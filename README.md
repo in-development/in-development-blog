@@ -12,3 +12,15 @@ $ docker run -it --rm --name blog -v /$(pwd)/src:/app/src -p 8000:8000 in-develo
 ```
 
 With this command is possible access the source running in the Docker ip and port 8000.
+
+
+Service end-point
+--------------------
+
+To access the end-point to read the posts we have this address:
+
+```
+https://in-development.firebaseio.com/posts.json
+```
+
+This end-point is public to read.

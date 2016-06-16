@@ -1,3 +1,14 @@
 module Actions exposing (..)
 
-type Msg = NoOp
+
+import Http
+
+
+import Models exposing (..)
+
+
+type Msg
+  = NoOp
+  | GetPosts
+  | FetchPostsSucceed (Posts)
+  | FetchPostsFail Http.Error

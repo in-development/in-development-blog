@@ -3,7 +3,6 @@ module View exposing (..)
 
 import Html exposing (div, text, h1)
 import Html.Attributes exposing (style)
-import Html.Events exposing (onClick)
 
 
 import Models exposing (..)
@@ -12,12 +11,22 @@ import Actions exposing (..)
 
 view : AppModel -> Html.Html Msg
 view model =
-  div []
-      [ h1  [ style [("margin-left", "1em")] ]
-            [ text model.title ]
-      , div [ style [("margin-top", "1em")] ]
-            [ posts model.posts ]
-      ]
+  let
+    postsView =
+      case model.posts of
+        [] -> 
+          div []
+              [ text "Loading...." ]
+        _ ->
+          posts model.posts
+
+  in
+    div []
+        [ h1  [ style [("margin-left", "1em")] ]
+              [ text model.title ]
+        , div [ style [("margin-top", "1em")] ]
+              [ postsView ]
+        ]
 
 
 posts : Posts -> Html.Html Msg
@@ -31,6 +40,7 @@ posts posts =
                        ]
 
     postList = List.map postRow posts
+
   in
     div []
         postList

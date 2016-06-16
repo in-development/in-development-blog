@@ -1,77 +1,23 @@
-import Html exposing (div, text, h1)
-import Html.Attributes exposing (style)
 import Html.App as Html
-import Html.Events exposing (onClick)
 
 
-type alias Post =
-  { author : String
-  , text : String
-  }
+import Models exposing (..)
+import Actions exposing (..)
+import Update exposing (..)
+import View exposing (..)
+import Commands exposing (..)
+import Subscriptions exposing (..)
 
 
-post1 : Post
-post1 =
-  { author = "Rodrigo Morais"
-  , text = "This is the first text."
-  }
-
-
-post2 : Post
-post2 =
-  { author = "Rodrigo Morais"
-  , text = "This is the second text."
-  }
-
-
-type alias Posts = List Post
-
-
-type alias AppModel =
-  { title : String
-  , posts : Posts
-  }
-
-
-initialAppModel : AppModel
-initialAppModel =
-  { title = "Posts"
-  , posts = [post1, post2]
-  }
+init : (AppModel, Cmd Msg)
+init =
+  (initialAppModel, getPosts)
 
 
 main =
-  Html.beginnerProgram { model = initialAppModel, view = view, update = update }
-
-type Msg = NoOp
-
-update msg model =
-  case msg of
-    NoOp ->
-      model
-
-
-view : AppModel -> Html.Html Msg
-view model =
-  div []
-      [ h1  [ style [("margin-left", "1em")] ]
-            [ text model.title ]
-      , div [ style [("margin-top", "1em")] ]
-            [ posts model.posts ]
-      ]
-
-
-posts : Posts -> Html.Html Msg
-posts posts =
-  let
-    postRow post = div [ style [("border", "solid 1px"), ("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
-                       [ div [ style [("margin", "0.5em 0 0 0.5em")]]
-                             [ text post.text ]
-                       , div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
-                             [ text post.author ]
-                       ]
-
-    postList = List.map postRow posts
-  in
-    div []
-        postList
+  Html.program
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = subscriptions
+    }

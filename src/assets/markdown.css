@@ -1,0 +1,14 @@
+.hlsj pre {
+  border: solid 1px black;
+  margin: 1em;
+  padding: 1em;
+  float: left;
+  width: 93%;
+}
+
+.hlsj code {
+    background-color: rgba(0,100,10,0.1);
+    width: 98%;
+    float: left;
+    padding: 0.5em;
+}

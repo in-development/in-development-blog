@@ -26,6 +26,8 @@
   },
   "devDependencies": {
     "file-loader": "^0.8.5",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
     "elm-webpack-loader": "^2.0.1",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.1",

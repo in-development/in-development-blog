@@ -1,7 +1,8 @@
 module Models exposing (..)
 
 type alias Post =
-  { author : String
+  { id : Int
+  , author : String
   , text : String
   }
 

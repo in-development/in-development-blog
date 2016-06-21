@@ -22,7 +22,8 @@ getPosts =
 
 decodePost : Json.Decoder Post
 decodePost =
-  Json.object2
+  Json.object3
     Post
+    ("id" := Json.int)
     ("author" := Json.string)
     ("text" := Json.string)

@@ -18,7 +18,7 @@ import Models exposing (AppModel)
 
 navigationCmd : String -> Cmd a
 navigationCmd path =
-    Navigation.modifyUrl (makeUrl routerConfig path)
+  Navigation.modifyUrl (makeUrl routerConfig path)
 
 
 

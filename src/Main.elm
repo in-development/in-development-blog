@@ -1,13 +1,9 @@
 import Html.App as Html
 
 
-import Navigation
-import Hop exposing (matchUrl)
-import Hop.Types exposing (Router, Location)
-
-
-import Routing.Models exposing (Route)
+import Routing.Models exposing (Route, Location)
 import Routing.Config exposing (routerConfig)
+import Routing.Utils exposing (urlParser, program)
 
 
 import Models exposing (..)
@@ -18,23 +14,18 @@ import Commands exposing (..)
 import Subscriptions exposing (..)
 
 
-urlParser : Navigation.Parser ( Route, Location )
-urlParser =
-    Navigation.makeParser (.href >> matchUrl routerConfig)
-
-
 urlUpdate : ( Route, Location ) -> AppModel -> ( AppModel, Cmd Msg )
 urlUpdate ( route, location ) model =
     ( { model | route = route, location = location }, Cmd.none )
 
 
-init : ( Route, Hop.Types.Location ) -> ( AppModel, Cmd Msg )
+init : ( Route, Location ) -> ( AppModel, Cmd Msg )
 init ( route, location ) =
     ( newAppModel route location, getPosts )
 
 
 main =
-    Navigation.program urlParser
+    program urlParser
     { init = init
     , view = view
     , update = update

@@ -1,28 +1,11 @@
 module Routing.Config exposing (..)
 
 
-import Hop.Types exposing (Config, Location, Query, Router, PathMatcher, newLocation)
-import Hop.Matchers exposing (..)
+import Hop.Types exposing (Config)
 
 
 import Routing.Models exposing (..)
-
-
-matcherPosts : PathMatcher Route
-matcherPosts =
-    match1 PostsRoute ""
-
-
-matcherAdmin : PathMatcher Route
-matcherAdmin =
-    match1 AdminRoute "/admin"
-
-
-matchers : List (PathMatcher Route)
-matchers =
-    [ matcherPosts
-    , matcherAdmin
-    ]
+import Routing.Matchers exposing (matchers)
 
 
 routerConfig : Config Route

@@ -1,9 +1,6 @@
 module Models exposing (..)
 
 
-import Hop.Types exposing (Location)
-
-
 import Routing.Models exposing (..)
 
 

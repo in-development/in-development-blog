@@ -11,7 +11,7 @@ import Routing.Matchers exposing (matchers)
 routerConfig : Config Route
 routerConfig =
     { basePath = ""
-    , hash = False
+    , hash = True
     , matchers = matchers
     , notFound = NotFoundRoute
     }

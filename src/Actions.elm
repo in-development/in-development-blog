@@ -12,3 +12,5 @@ type Msg
   | GetPosts
   | FetchPostsSucceed (Posts)
   | FetchPostsFail Http.Error
+  | ShowPosts
+  | ShowAdmin

@@ -1,6 +1,11 @@
 import Html.App as Html
 
 
+import Routing.Models exposing (Route, Location)
+import Routing.Config exposing (routerConfig)
+import Routing.Utils exposing (urlParser, program)
+
+
 import Models exposing (..)
 import Actions exposing (..)
 import Update exposing (..)
@@ -9,15 +14,21 @@ import Commands exposing (..)
 import Subscriptions exposing (..)
 
 
-init : (AppModel, Cmd Msg)
-init =
-  (initialAppModel, getPosts)
+urlUpdate : ( Route, Location ) -> AppModel -> ( AppModel, Cmd Msg )
+urlUpdate ( route, location ) model =
+    ( { model | route = route, location = location }, Cmd.none )
+
+
+init : ( Route, Location ) -> ( AppModel, Cmd Msg )
+init ( route, location ) =
+    ( newAppModel route location, getPosts )
 
 
 main =
-  Html.program
+    program urlParser
     { init = init
     , view = view
     , update = update
+    , urlUpdate = urlUpdate
     , subscriptions = subscriptions
     }

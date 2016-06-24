@@ -7,8 +7,10 @@ import Routing.Utils exposing (reverse, navigationCmd)
 
 
 import Messages exposing (..)
-import Commands exposing (..)
 import Models exposing (AppModel)
+
+
+import Posts.Update
 
 
 update : Msg -> AppModel -> (AppModel, Cmd Msg)
@@ -17,16 +19,12 @@ update msg model =
     NoOp ->
       (model, Cmd.none)
 
-    GetPosts ->
-      (model, getPosts)
-
-    FetchPostsSucceed posts ->
-      ( { model | posts = posts }
-      , Cmd.none
-      )
-
-    FetchPostsFail _ ->
-      (model, Cmd.none)
+    PostsMessagesMsg subMsg ->
+      let
+        ( updatedPosts, msg ) =
+          Posts.Update.update subMsg model.posts
+      in
+        ( { model | posts = updatedPosts }, Cmd.map PostsMessagesMsg msg )
 
     ShowPosts ->
       let

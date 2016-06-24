@@ -1,8 +1,8 @@
-module Commands exposing (..)
+module Posts.Commands exposing (..)
 
 
-import Models exposing (..)
-import Messages exposing (..)
+import Posts.Models exposing (Post)
+import Posts.Messages exposing (..)
 
 
 import Http

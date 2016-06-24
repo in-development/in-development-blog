@@ -4,14 +4,7 @@ module Models exposing (..)
 import Routing.Models exposing (..)
 
 
-type alias Post =
-  { id : Int
-  , author : String
-  , text : String
-  }
-
-
-type alias Posts = List Post
+import Posts.Models exposing (Posts)
 
 
 type alias AppModel =

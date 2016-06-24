@@ -2,7 +2,7 @@ module Subscriptions exposing (..)
 
 
 import Models exposing (AppModel)
-import Actions exposing (Msg)
+import Messages exposing (Msg)
 
 
 subscriptions : AppModel -> Sub Msg

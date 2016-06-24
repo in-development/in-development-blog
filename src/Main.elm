@@ -7,7 +7,7 @@ import Routing.Utils exposing (urlParser, program)
 
 
 import Models exposing (..)
-import Actions exposing (..)
+import Messages exposing (..)
 import Update exposing (..)
 import View exposing (..)
 import Commands exposing (..)

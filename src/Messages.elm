@@ -1,4 +1,4 @@
-module Actions exposing (..)
+module Messages exposing (..)
 
 
 import Http

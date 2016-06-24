@@ -6,7 +6,7 @@ import Routing.Config exposing (routerConfig)
 import Routing.Utils exposing (reverse, navigationCmd)
 
 
-import Actions exposing (..)
+import Messages exposing (..)
 import Commands exposing (..)
 import Models exposing (AppModel)
 

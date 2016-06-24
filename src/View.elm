@@ -8,7 +8,7 @@ import Markdown
 
 
 import Models exposing (..)
-import Actions exposing (..)
+import Messages exposing (..)
 
 
 import Routing.Models exposing (..)

@@ -50,22 +50,13 @@ menuLink message viewId label =
 
 pageView : AppModel -> Html.Html Msg
 pageView model =
-  let
-    postsVW =
-      case model.posts of
-        [] -> 
-          div []
-              [ text "Loading...." ]
-        _ ->
-          Html.App.map PostsMessagesMsg (postsView model.posts)
-  in
-    case model.route of
+  case model.route of
       PostsRoute ->
         div []
             [ h1  [ style [("margin-left", "1em")] ]
                   [ text model.title ]
             , div [ style [("margin-top", "1em")] ]
-                  [ postsVW ]
+                  [ Html.App.map PostsMessagesMsg (postsView model.posts) ]
             ]
 
       AdminRoute ->

@@ -16,9 +16,18 @@ postsView posts =
   let
     postList = List.map postView posts
 
+    postVW =
+      case posts of
+        [] -> 
+          div []
+              [ text "Loading...." ]
+        _ ->
+          div []
+              postList
+
   in
     div []
-        postList
+        [postVW]
 
 
 postView : Post -> Html.Html Msg

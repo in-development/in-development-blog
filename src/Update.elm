@@ -11,6 +11,7 @@ import Models exposing (AppModel)
 
 
 import Posts.Update
+import Navigation.Update
 
 
 update : Msg -> AppModel -> (AppModel, Cmd Msg)
@@ -26,16 +27,10 @@ update msg model =
       in
         ( { model | posts = updatedPosts }, Cmd.map PostsMessagesMsg msg )
 
-    ShowPosts ->
+    NavigationMessagesMsg subMsg ->
       let
-        path =
-          reverse PostsRoute
-      in
-        ( model, navigationCmd path )
+        msg =
+          Navigation.Update.update subMsg
 
-    ShowAdmin ->
-      let
-        path =
-          reverse AdminRoute
       in
-        ( model, navigationCmd path )
+        ( model, Cmd.map NavigationMessagesMsg msg )

@@ -6,7 +6,7 @@ import Html.Events exposing (onClick)
 import Html.Attributes exposing (style, href, id)
 
 
-import Messages exposing (..)
+import Navigation.Messages exposing (..)
 
 
 menuView : Html.Html Msg

@@ -22,7 +22,7 @@ import Navigation.View exposing (menuView)
 view : AppModel -> Html.Html Msg
 view model =
   div []
-      [ menuView
+      [ Html.App.map NavigationMessagesMsg menuView
       , pageView model
       ]
     

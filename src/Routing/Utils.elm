@@ -6,7 +6,7 @@ import Navigation
 
 
 import Routing.Models exposing (..)
-import Routing.Matchers exposing (matcherPosts, matcherAdmin)
+import Routing.Matchers exposing (matcherPosts, matcherAdmin, matcherPost)
 import Routing.Config exposing (routerConfig)
 
 
@@ -18,6 +18,9 @@ reverse route =
 
     AdminRoute ->
         matcherToPath matcherAdmin []
+
+    PostRoute id ->
+      matcherToPath matcherPost [toString id]
 
     NotFoundRoute ->
         ""

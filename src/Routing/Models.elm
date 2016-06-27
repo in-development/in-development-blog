@@ -7,6 +7,7 @@ import Hop.Types exposing (Location)
 type Route
     = PostsRoute
     | AdminRoute
+    | PostRoute Int
     | NotFoundRoute
 
 

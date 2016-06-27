@@ -30,22 +30,28 @@ view model =
 pageView : AppModel -> Html.Html Msg
 pageView model =
   case model.route of
-      PostsRoute ->
-        div []
-            [ h1  [ style [("margin-left", "1em")] ]
-                  [ text model.title ]
-            , div [ style [("margin-top", "1em")] ]
-                  [ Html.App.map PostsMessagesMsg (postsView model.posts) ]
-            ]
+    PostsRoute ->
+      div []
+          [ h1  [ style [("margin-left", "1em")] ]
+                [ text model.title ]
+          , div [ style [("margin-top", "1em")] ]
+                [ Html.App.map PostsMessagesMsg (postsView model.posts) ]
+          ]
 
-      AdminRoute ->
-        div []
-            [ h1 [ id "title"]
-                 [ text "Admin" ]
-            ]
+    AdminRoute ->
+      div []
+          [ h1 [ id "title"]
+               [ text "Admin" ]
+          ]
 
-      NotFoundRoute ->
-        notFoundView
+    PostRoute postId ->
+      div []
+          [ h1 [ id "title"]
+               [ text ("Post - " ++ (toString postId)) ]
+          ]
+
+    NotFoundRoute ->
+      notFoundView
 
 
 notFoundView : Html.Html msg

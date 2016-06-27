@@ -15,3 +15,4 @@ type Msg
   = NoOp
   | PostsMessagesMsg PostsMessages.Msg
   | NavigationMessagesMsg NavigationMessages.Msg
+  | ShowPost Int

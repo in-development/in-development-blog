@@ -5,12 +5,15 @@ import Posts.Models exposing (Post)
 import Posts.Messages exposing (..)
 
 
+import Messages exposing (..)
+
+
 import Http
 import Json.Decode as Json exposing ((:=))
 import Task
 
 
-getPosts : Cmd Msg
+getPosts : Cmd Posts.Messages.Msg
 getPosts =
   let
     url =

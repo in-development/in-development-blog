@@ -8,4 +8,12 @@ type alias Post =
   }
 
 
+initialPost : Post
+initialPost =
+  { id = 0
+  , author = ""
+  , text = ""
+  }
+
+
 type alias Posts = List Post

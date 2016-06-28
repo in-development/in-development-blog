@@ -35,9 +35,10 @@ update msg model =
       in
         ( model, Cmd.map NavigationMessagesMsg msg )
 
-    ShowPost postId ->
-      let
-        path =
-          reverse (PostRoute postId)
-      in
-        ( model, navigationCmd path )
+    FetchPostSucceed post ->
+      ( { model | post = post }
+      , Cmd.none
+      )
+
+    FetchPostFail _ ->
+      (model, Cmd.none)

@@ -56,5 +56,5 @@ pageView model =
 
 notFoundView : Html.Html msg
 notFoundView =
-    div []
-        [ text "Not Found" ]
+  div []
+      [ text "Not Found" ]

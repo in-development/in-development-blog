@@ -4,7 +4,7 @@ module Messages exposing (..)
 import Http
 
 
-import Posts.Models exposing (Posts)
+import Posts.Models exposing (Posts, Post)
 import Posts.Messages as PostsMessages
 
 
@@ -15,4 +15,5 @@ type Msg
   = NoOp
   | PostsMessagesMsg PostsMessages.Msg
   | NavigationMessagesMsg NavigationMessages.Msg
-  | ShowPost Int
+  | FetchPostSucceed Post
+  | FetchPostFail Http.Error

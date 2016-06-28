@@ -32,13 +32,24 @@ postsView posts =
 
 postView : Post -> Html.Html Msg
 postView post =
-  div [ style [("border", "solid 1px"), ("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
-      [ div [ style [("margin", "0.5em 0 0 0.5em")]]
-            [
-              postText post.text
+  let
+    postId = "posts-" ++ (toString post.id)
+
+  in
+    a [ id postId
+      , href "javascript://"
+      , onClick (ShowPost post.id)
+      , style [("text-decoration", "none"), ("color", "#000000")]
+      ]
+      [
+        div [ style [("border", "solid 1px #000000"), ("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
+            [ div [ style [("margin", "0.5em 0 0 0.5em")]]
+                  [
+                    postText post.text
+                  ]
+            , div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
+                  [ text post.author ]
             ]
-      , div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
-            [ text post.author ]
       ]
 
 

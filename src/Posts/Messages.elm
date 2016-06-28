@@ -11,3 +11,4 @@ type Msg
   = GetPosts
   | FetchPostsSucceed (Posts)
   | FetchPostsFail Http.Error
+  | ShowPost Int

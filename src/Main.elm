@@ -10,8 +10,10 @@ import Models exposing (..)
 import Messages exposing (..)
 import Update exposing (..)
 import View exposing (..)
-import Commands exposing (..)
 import Subscriptions exposing (..)
+
+
+import Posts.Commands exposing (getPosts)
 
 
 urlUpdate : ( Route, Location ) -> AppModel -> ( AppModel, Cmd Msg )
@@ -21,7 +23,7 @@ urlUpdate ( route, location ) model =
 
 init : ( Route, Location ) -> ( AppModel, Cmd Msg )
 init ( route, location ) =
-    ( newAppModel route location, getPosts )
+    ( newAppModel route location, Cmd.map PostsMessagesMsg getPosts )
 
 
 main =

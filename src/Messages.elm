@@ -4,13 +4,12 @@ module Messages exposing (..)
 import Http
 
 
-import Models exposing (..)
+import Posts.Models exposing (Posts)
+import Posts.Messages as PostsMessages
 
 
 type Msg
   = NoOp
-  | GetPosts
-  | FetchPostsSucceed (Posts)
-  | FetchPostsFail Http.Error
+  | PostsMessagesMsg PostsMessages.Msg
   | ShowPosts
   | ShowAdmin

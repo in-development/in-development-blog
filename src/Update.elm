@@ -34,11 +34,3 @@ update msg model =
 
       in
         ( model, Cmd.map NavigationMessagesMsg msg )
-
-    FetchPostSucceed post ->
-      ( { model | post = post }
-      , Cmd.none
-      )
-
-    FetchPostFail _ ->
-      (model, Cmd.none)

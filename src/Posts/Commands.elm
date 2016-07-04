@@ -5,9 +5,6 @@ import Posts.Models exposing (Post)
 import Posts.Messages exposing (..)
 
 
-import Messages exposing (..)
-
-
 import Http
 import Json.Decode as Json exposing ((:=))
 import Task
@@ -21,6 +18,16 @@ getPosts =
   in
     Http.get (Json.list decodePost) url
     |> Task.perform FetchPostsFail FetchPostsSucceed
+
+
+getPost : Int -> Cmd Msg
+getPost id =
+  let
+    url =
+      "https://in-development.firebaseio.com/posts/" ++ (toString id) ++ ".json"
+  in
+    Http.get decodePost url
+    |> Task.perform FetchPostsFail FetchPostSucceed
 
 
 decodePost : Json.Decoder Post

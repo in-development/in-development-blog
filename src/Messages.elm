@@ -15,5 +15,3 @@ type Msg
   = NoOp
   | PostsMessagesMsg PostsMessages.Msg
   | NavigationMessagesMsg NavigationMessages.Msg
-  | FetchPostSucceed Post
-  | FetchPostFail Http.Error

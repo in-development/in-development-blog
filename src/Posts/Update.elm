@@ -6,11 +6,8 @@ import Routing.Models exposing (..)
 
 
 import Posts.Messages exposing (..)
-import Posts.Commands exposing (getPosts)
+import Posts.Commands exposing (getPosts, getPost)
 import Posts.Models exposing (Posts, Post)
-
-
-import Commands exposing (getPost)
 
 
 update : Msg -> Posts -> (Posts, Cmd Msg)
@@ -31,5 +28,7 @@ update msg model =
           reverse (PostRoute postId)
 
       in
-        --( model, Cmd.batch [getPost postId, navigationCmd path] )
-        ( model, navigationCmd path )
+        ( model, Cmd.batch [getPost postId, navigationCmd path] )
+
+    FetchPostSucceed post ->
+      ( model, Cmd.none )

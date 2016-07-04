@@ -12,3 +12,4 @@ type Msg
   | FetchPostsSucceed (Posts)
   | FetchPostsFail Http.Error
   | ShowPost Int
+  | FetchPostSucceed Post

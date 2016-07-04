@@ -16,37 +16,16 @@ import Routing.Models exposing (..)
 
 
 import Posts.View exposing (postsView)
+import Navigation.View exposing (menuView)
 
 
 view : AppModel -> Html.Html Msg
 view model =
   div []
-      [ menu
+      [ Html.App.map NavigationMessagesMsg menuView
       , pageView model
       ]
     
-
-
-menu : Html.Html Msg
-menu =
-    div [ style [("background-color", "#000000"), ("color", "#FFFFFF")] ]
-        [ div []
-              [ menuLink ShowPosts "btnPosts" "Posts"
-              , text " | "
-              , menuLink ShowAdmin "btnAdmin" "Admin"
-              ]
-        ]
-
-
-menuLink : Msg -> String -> String -> Html.Html Msg
-menuLink message viewId label =
-    a [ id viewId
-      , href "javascript://"
-      , onClick message
-      , style [("text-decoration", "none"), ("color", "#FFFFFF")]
-      ]
-      [ text label ]
-
 
 pageView : AppModel -> Html.Html Msg
 pageView model =

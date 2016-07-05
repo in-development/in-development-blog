@@ -14,6 +14,3 @@ initialPost =
   , author = ""
   , text = ""
   }
-
-
-type alias Posts = List Post

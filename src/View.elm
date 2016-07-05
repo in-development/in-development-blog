@@ -15,7 +15,9 @@ import Messages exposing (..)
 import Routing.Models exposing (..)
 
 
-import Posts.View exposing (postsView, postView)
+import Posts.List.View exposing (postsView, postView)
+
+
 import Navigation.View exposing (menuView)
 
 

@@ -1,11 +1,13 @@
-module Posts.Update exposing (..)
+module Posts.List.Update exposing (..)
 
 
 import Routing.Utils exposing (reverse, navigationCmd)
 import Routing.Models exposing (..)
 
 
-import Posts.Messages exposing (..)
+import Posts.List.Messages exposing (..)
+
+
 import Posts.Commands exposing (getPosts, getPost)
 import Posts.Models exposing (Posts, Post)
 

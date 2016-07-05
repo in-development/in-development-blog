@@ -1,10 +1,13 @@
-module Posts.Messages exposing (..)
+module Posts.List.Messages exposing (..)
 
 
 import Http
 
 
 import Posts.Models exposing (..)
+
+
+import Posts.List.Models exposing (..)
 
 
 type Msg

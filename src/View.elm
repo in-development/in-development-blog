@@ -15,7 +15,7 @@ import Messages exposing (..)
 import Routing.Models exposing (..)
 
 
-import Posts.View exposing (postsView)
+import Posts.View exposing (postsView, postView)
 import Navigation.View exposing (menuView)
 
 
@@ -45,10 +45,19 @@ pageView model =
           ]
 
     PostRoute postId ->
-      div []
-          [ h1 [ id "title"]
-               [ text ("Post - " ++ (toString postId)) ]
-          ]
+      let
+        post =
+          List.head (List.filter (\p -> p.id == postId) model.posts)
+
+      in
+        case post of
+          Just p ->
+            div []
+                [ div [ style [("margin-top", "1em")] ]
+                      [ Html.App.map PostsMessagesMsg (postView p) ]
+                ]
+          Nothing ->
+            notFoundView
 
     NotFoundRoute ->
       notFoundView

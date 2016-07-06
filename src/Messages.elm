@@ -4,10 +4,9 @@ module Messages exposing (..)
 import Http
 
 
-import Posts.Models exposing (Post)
+import Posts.Models exposing (Post, Posts)
 
 
-import Posts.List.Models exposing (Posts)
 import Posts.List.Messages as PostsMessages
 
 

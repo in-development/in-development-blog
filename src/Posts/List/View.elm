@@ -7,7 +7,7 @@ import Html.Attributes exposing (style, class, href, id)
 import Markdown
 
 
-import Posts.Models exposing (Post)
+import Posts.Show.Models exposing (Post)
 
 
 import Posts.List.Models exposing (Posts)

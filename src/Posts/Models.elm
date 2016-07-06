@@ -1,16 +1,14 @@
 module Posts.Models exposing (..)
 
 
-type alias Post =
-  { id : Int
-  , author : String
-  , text : String
-  }
+import Posts.Show.Models as ShowModels
 
 
-initialPost : Post
-initialPost =
-  { id = 0
-  , author = ""
-  , text = ""
-  }
+import Posts.List.Models as ListModels
+
+
+type alias Post = ShowModels.Post
+initialPost = ShowModels.initialPost
+
+
+type alias Posts = ListModels.Posts

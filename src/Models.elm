@@ -4,10 +4,7 @@ module Models exposing (..)
 import Routing.Models exposing (..)
 
 
-import Posts.Models exposing (Post, initialPost)
-
-
-import Posts.List.Models exposing (Posts)
+import Posts.Models exposing (Post, initialPost, Posts)
 
 
 type alias AppModel =

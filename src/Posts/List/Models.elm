@@ -1,7 +1,7 @@
 module Posts.List.Models exposing (..)
 
 
-import Posts.Models exposing (Post)
+import Posts.Show.Models exposing (Post)
 
 
 type alias Posts = List Post

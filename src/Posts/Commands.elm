@@ -1,7 +1,7 @@
 module Posts.Commands exposing (..)
 
 
-import Posts.Models exposing (Post)
+import Posts.Show.Models exposing (Post)
 
 
 import Posts.List.Messages exposing (..)

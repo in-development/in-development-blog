@@ -12,6 +12,7 @@ import Models exposing (AppModel)
 
 import Posts.List.Update
 import Posts.Show.Update
+import Posts.Models exposing (initialPost)
 
 
 import Navigation.Update
@@ -33,7 +34,7 @@ update msg model =
     PostMessagesMsg subMsg ->
       let
         ( _, msg ) =
-          Posts.Show.Update.update subMsg model.post
+          Posts.Show.Update.update subMsg initialPost
       in
         ( model, Cmd.map PostMessagesMsg msg )
 

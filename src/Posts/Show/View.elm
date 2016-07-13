@@ -19,7 +19,7 @@ postView post =
   in
     a [ id postId
       , href "javascript://"
-      , onClick (ShowPost post.id)
+      , onClick (ShowPost post)
       , style [("text-decoration", "none"), ("color", "#000000")]
       ]
       [

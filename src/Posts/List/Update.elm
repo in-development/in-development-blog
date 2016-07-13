@@ -6,14 +6,8 @@ import Routing.Models exposing (..)
 
 
 import Posts.List.Messages exposing (..)
-
-
-import Posts.Commands exposing (getPosts, getPost)
-
-
+import Posts.Commands exposing (getPosts)
 import Posts.List.Models exposing (Posts)
-
-
 import Posts.Show.Update
 import Posts.Show.Models exposing (initialPost)
 

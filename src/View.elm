@@ -16,8 +16,6 @@ import Routing.Models exposing (..)
 
 
 import Posts.Show.View exposing (postView)
-
-
 import Posts.List.View exposing (postsView)
 
 

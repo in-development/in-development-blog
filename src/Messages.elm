@@ -5,11 +5,7 @@ import Http
 
 
 import Posts.Models exposing (Post, Posts)
-
-
 import Posts.List.Messages as PostsMessages
-
-
 import Posts.Show.Messages as PostMessages
 
 

@@ -9,22 +9,13 @@ import Posts.Show.Messages exposing (..)
 import Posts.Show.Models exposing (Post)
 
 
-import Posts.Commands exposing (getPost)
-
-
 update : Msg -> Post -> (Post, Cmd Msg)
 update msg model =
   case msg of
-    ShowPost postId ->
+    ShowPost post ->
       let
         path =
-          reverse (PostRoute postId)
+          reverse (PostRoute post.id)
 
       in
-        ( model, Cmd.batch [getPost postId, navigationCmd path] )
-
-    FetchPostSucceed post ->
-      ( model, Cmd.none )
-
-    FetchPostFail _ ->
-      (model, Cmd.none)
+        ( model, navigationCmd path )

@@ -8,9 +8,7 @@ import Markdown
 
 
 import Posts.Show.Models exposing (Post)
-
-
-import Posts.List.Messages exposing (..)
+import Posts.Show.Messages exposing (..)
 
 
 postView : Post -> Html.Html Msg

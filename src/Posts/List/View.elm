@@ -2,6 +2,7 @@ module Posts.List.View exposing (..)
 
 
 import Html exposing (div, text)
+import Html.App
 import Markdown
 
 
@@ -28,4 +29,4 @@ postsView posts =
 
   in
     div []
-        [postVW]
+        [Html.App.map PostMessagesMsg (postVW)]

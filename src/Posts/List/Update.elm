@@ -14,6 +14,11 @@ import Posts.Commands exposing (getPosts, getPost)
 import Posts.List.Models exposing (Posts)
 
 
+import Posts.Show.Update
+import Posts.Show.Models exposing (initialPost)
+
+
+
 update : Msg -> Posts -> (Posts, Cmd Msg)
 update msg model =
   case msg of
@@ -26,13 +31,9 @@ update msg model =
     FetchPostsFail _ ->
       (model, Cmd.none)
 
-    ShowPost postId ->
+    PostMessagesMsg subMsg ->
       let
-        path =
-          reverse (PostRoute postId)
-
+        ( _, msg ) =
+          Posts.Show.Update.update subMsg initialPost
       in
-        ( model, Cmd.batch [getPost postId, navigationCmd path] )
-
-    FetchPostSucceed post ->
-      ( model, Cmd.none )
+        ( model, Cmd.map PostMessagesMsg msg )

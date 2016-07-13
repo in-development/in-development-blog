@@ -2,6 +2,7 @@ module Posts.Commands exposing (..)
 
 
 import Posts.Show.Models exposing (Post)
+import Posts.Show.Messages exposing (..)
 
 
 import Posts.List.Messages exposing (..)
@@ -12,7 +13,7 @@ import Json.Decode as Json exposing ((:=))
 import Task
 
 
-getPosts : Cmd Msg
+getPosts : Cmd Posts.List.Messages.Msg
 getPosts =
   let
     url =
@@ -22,14 +23,14 @@ getPosts =
     |> Task.perform FetchPostsFail FetchPostsSucceed
 
 
-getPost : Int -> Cmd Msg
+getPost : Int -> Cmd Posts.Show.Messages.Msg
 getPost id =
   let
     url =
       "https://in-development.firebaseio.com/posts/" ++ (toString id) ++ ".json"
   in
     Http.get decodePost url
-    |> Task.perform FetchPostsFail FetchPostSucceed
+    |> Task.perform FetchPostFail FetchPostSucceed
 
 
 decodePost : Json.Decoder Post

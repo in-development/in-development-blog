@@ -59,7 +59,7 @@ pageView model =
           Just p ->
             div []
                 [ div [ style [("margin-top", "1em")] ]
-                      [ Html.App.map PostsMessagesMsg (postView p) ]
+                      [ Html.App.map PostMessagesMsg (postView p) ]
                 ]
           Nothing ->
             notFoundView

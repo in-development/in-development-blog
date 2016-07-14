@@ -1,7 +1,7 @@
 module Routing.Matchers exposing (..)
 
 import Hop.Types exposing (PathMatcher)
-import Hop.Matchers exposing (match1)
+import Hop.Matchers exposing (match1, match2, int)
 
 
 import Routing.Models exposing (..)
@@ -17,8 +17,14 @@ matcherAdmin =
     match1 AdminRoute "/admin"
 
 
+matcherPost : PathMatcher Route
+matcherPost =
+    match2 PostRoute "/post/" int
+
+
 matchers : List (PathMatcher Route)
 matchers =
     [ matcherPosts
     , matcherAdmin
+    , matcherPost
     ]

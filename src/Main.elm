@@ -1,7 +1,7 @@
 import Html.App as Html
 
 
-import Routing.Models exposing (Route, Location)
+import Routing.Models exposing (..)
 import Routing.Config exposing (routerConfig)
 import Routing.Utils exposing (urlParser, program)
 
@@ -13,12 +13,27 @@ import View exposing (..)
 import Subscriptions exposing (..)
 
 
-import Posts.Commands exposing (getPosts)
+import Post.Commands exposing (getPosts)
+
+
+import Array
 
 
 urlUpdate : ( Route, Location ) -> AppModel -> ( AppModel, Cmd Msg )
 urlUpdate ( route, location ) model =
-    ( { model | route = route, location = location }, Cmd.none )
+  let
+    isPosts =
+      let path = location.path
+      in
+        List.length path == 1 && List.all (\p -> p == "posts") path
+
+    r =
+      case isPosts of
+        True -> PostsRoute
+        _ -> route
+
+  in
+    ( { model | route = r, location = location }, Cmd.none )
 
 
 init : ( Route, Location ) -> ( AppModel, Cmd Msg )

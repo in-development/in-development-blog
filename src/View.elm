@@ -15,7 +15,10 @@ import Messages exposing (..)
 import Routing.Models exposing (..)
 
 
-import Posts.View exposing (postsView)
+import Post.Show.View exposing (postView)
+import Post.List.View exposing (postsView)
+
+
 import Navigation.View exposing (menuView)
 
 
@@ -30,25 +33,40 @@ view model =
 pageView : AppModel -> Html.Html Msg
 pageView model =
   case model.route of
-      PostsRoute ->
-        div []
-            [ h1  [ style [("margin-left", "1em")] ]
-                  [ text model.title ]
-            , div [ style [("margin-top", "1em")] ]
-                  [ Html.App.map PostsMessagesMsg (postsView model.posts) ]
-            ]
+    PostsRoute ->
+      div []
+          [ h1  [ style [("margin-left", "1em")] ]
+                [ text model.title ]
+          , div [ style [("margin-top", "1em")] ]
+                [ Html.App.map PostsMessagesMsg (postsView model.posts) ]
+          ]
 
-      AdminRoute ->
-        div []
-            [ h1 [ id "title"]
-                 [ text "Admin" ]
-            ]
+    AdminRoute ->
+      div []
+          [ h1 [ id "title"]
+               [ text "Admin" ]
+          ]
 
-      NotFoundRoute ->
-        notFoundView
+    PostRoute postId ->
+      let
+        post =
+          List.head (List.filter (\p -> p.id == postId) model.posts)
+
+      in
+        case post of
+          Just p ->
+            div []
+                [ div [ style [("margin-top", "1em")] ]
+                      [ Html.App.map PostMessagesMsg (postView p) ]
+                ]
+          Nothing ->
+            notFoundView
+
+    NotFoundRoute ->
+      notFoundView
 
 
 notFoundView : Html.Html msg
 notFoundView =
-    div []
-        [ text "Not Found" ]
+  div []
+      [ text "Not Found" ]

@@ -13,7 +13,7 @@ import View exposing (..)
 import Subscriptions exposing (..)
 
 
-import Posts.Commands exposing (getPosts)
+import Post.Commands exposing (getPosts)
 
 
 import Array

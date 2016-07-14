@@ -1,4 +1,4 @@
-module Posts.Show.View exposing (..)
+module Post.Show.View exposing (..)
 
 
 import Html exposing (div, text, a)
@@ -7,8 +7,8 @@ import Html.Attributes exposing (style, class, href, id)
 import Markdown
 
 
-import Posts.Show.Models exposing (Post)
-import Posts.Show.Messages exposing (..)
+import Post.Show.Models exposing (Post)
+import Post.Show.Messages exposing (..)
 
 
 postView : Post -> Html.Html Msg

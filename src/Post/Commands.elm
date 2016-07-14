@@ -1,8 +1,8 @@
-module Posts.Commands exposing (..)
+module Post.Commands exposing (..)
 
 
-import Posts.Show.Models exposing (Post)
-import Posts.List.Messages exposing (..)
+import Post.Show.Models exposing (Post)
+import Post.List.Messages exposing (..)
 
 
 import Http
@@ -10,7 +10,7 @@ import Json.Decode as Json exposing ((:=))
 import Task
 
 
-getPosts : Cmd Posts.List.Messages.Msg
+getPosts : Cmd Post.List.Messages.Msg
 getPosts =
   let
     url =

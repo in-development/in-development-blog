@@ -1,10 +1,10 @@
-module Posts.Models exposing (..)
+module Post.Models exposing (..)
 
 
-import Posts.Show.Models as ShowModels
+import Post.Show.Models as ShowModels
 
 
-import Posts.List.Models as ListModels
+import Post.List.Models as ListModels
 
 
 type alias Post = ShowModels.Post

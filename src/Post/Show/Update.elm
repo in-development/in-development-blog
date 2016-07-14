@@ -1,12 +1,12 @@
-module Posts.Show.Update exposing (..)
+module Post.Show.Update exposing (..)
 
 
 import Routing.Utils exposing (reverse, navigationCmd)
 import Routing.Models exposing (..)
 
 
-import Posts.Show.Messages exposing (..)
-import Posts.Show.Models exposing (Post)
+import Post.Show.Messages exposing (..)
+import Post.Show.Models exposing (Post)
 
 
 update : Msg -> Post -> (Post, Cmd Msg)

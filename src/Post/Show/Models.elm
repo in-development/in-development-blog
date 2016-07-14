@@ -1,4 +1,4 @@
-module Posts.Show.Models exposing (..)
+module Post.Show.Models exposing (..)
 
 
 type alias Post =

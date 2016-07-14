@@ -1,13 +1,13 @@
-module Posts.List.Messages exposing (..)
+module Post.List.Messages exposing (..)
 
 
 import Http
 
 
-import Posts.List.Models exposing (Posts)
+import Post.List.Models exposing (Posts)
 
 
-import Posts.Show.Messages as PostMessages
+import Post.Show.Messages as PostMessages
 
 
 type Msg

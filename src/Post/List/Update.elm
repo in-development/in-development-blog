@@ -1,15 +1,15 @@
-module Posts.List.Update exposing (..)
+module Post.List.Update exposing (..)
 
 
 import Routing.Utils exposing (reverse, navigationCmd)
 import Routing.Models exposing (..)
 
 
-import Posts.List.Messages exposing (..)
-import Posts.Commands exposing (getPosts)
-import Posts.List.Models exposing (Posts)
-import Posts.Show.Update
-import Posts.Show.Models exposing (initialPost)
+import Post.List.Messages exposing (..)
+import Post.Commands exposing (getPosts)
+import Post.List.Models exposing (Posts)
+import Post.Show.Update
+import Post.Show.Models exposing (initialPost)
 
 
 
@@ -28,6 +28,6 @@ update msg model =
     PostMessagesMsg subMsg ->
       let
         ( _, msg ) =
-          Posts.Show.Update.update subMsg initialPost
+          Post.Show.Update.update subMsg initialPost
       in
         ( model, Cmd.map PostMessagesMsg msg )

@@ -4,6 +4,7 @@
   "description": "This is a Blog which can be used to publish posts.",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "build": "webpack",
     "watch": "webpack --watch",
     "dev": "webpack-dev-server --port 5000"
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/rodrigo-morais/in-development-blog#readme",
   "dependencies": {
+    "express": "^4.14.0"
   },
   "devDependencies": {
     "file-loader": "^0.8.5",

@@ -14,7 +14,7 @@ getPosts : Cmd Post.List.Messages.Msg
 getPosts =
   let
     url =
-      "https://in-development.firebaseio.com/posts.json"
+      "https://in-development-3.firebaseio.com/blog/posts.json"
   in
     Http.get (Json.list decodePost) url
     |> Task.perform FetchPostsFail FetchPostsSucceed

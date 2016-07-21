@@ -22,9 +22,15 @@ matcherPost =
     match2 PostRoute "/post/" int
 
 
+matcherNewPost : PathMatcher Route
+matcherNewPost =
+    match1 NewPostRoute "/post/new"
+
+
 matchers : List (PathMatcher Route)
 matchers =
     [ matcherPosts
     , matcherAdmin
     , matcherPost
+    , matcherNewPost
     ]

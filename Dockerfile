@@ -12,9 +12,14 @@ COPY ./webpack.config.js /app/webpack.config.js
 COPY ./package.json /app/package.json
 COPY ./elm-package.json /app/elm-package.json
 
+#Copy server files
+COPY ./server.js /app/server.js
+
 # Run ELM-PACKAGE install
 RUN npm install
 RUN elm-package install -y
 COPY ./src /app/src
 
-CMD node node_modules/webpack-dev-server/bin/webpack-dev-server --host 0.0.0.0 --port 8000
+RUN npm run build
+
+CMD npm start

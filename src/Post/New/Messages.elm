@@ -1,5 +1,12 @@
 module Post.New.Messages exposing (..)
 
 
+import Http
+
+
+import Post.Models exposing (Post)
+
 type Msg
-  = NoOp
+  = SavePost Post
+  | AddPostSucceed Post
+  | AddPostFail Http.Error

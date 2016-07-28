@@ -10,3 +10,5 @@ type Msg
   = SavePost Post
   | AddPostSucceed Post
   | AddPostFail Http.Error
+  | SetAuthor String
+  | SetText String

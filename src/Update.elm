@@ -41,10 +41,10 @@ update msg model =
 
     NewPostMessagesMsg subMsg ->
       let
-        (_, msg) =
-          Post.New.Update.update subMsg initialPost
+        (updatedNewPost, msg) =
+          Post.New.Update.update subMsg model.newPost
       in
-        ( model, Cmd.map NewPostMessagesMsg msg )
+        ( { model | newPost = updatedNewPost }, Cmd.map NewPostMessagesMsg msg )
 
     NavigationMessagesMsg subMsg ->
       let

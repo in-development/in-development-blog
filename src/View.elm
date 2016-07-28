@@ -64,9 +64,19 @@ pageView model =
             notFoundView
 
     NewPostRoute ->
+      let
+        newId =
+          List.length model.posts
+
+        newPost =
+          model.newPost
+        
+        post =
+          { newPost | id = newId } 
+      in
       div []
           [ div [ style [("margin-top", "1em")] ]
-                [ Html.App.map NewPostMessagesMsg newPostView ]
+                [ Html.App.map NewPostMessagesMsg (newPostView post) ]
           ]
 
     NotFoundRoute ->

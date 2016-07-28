@@ -15,3 +15,15 @@ update msg model =
       (post, Cmd.none)
     AddPostFail _ ->
       (model, Cmd.none)
+    SetAuthor name ->
+      let
+        updatedModel =
+          { model | author = name }
+      in
+        (updatedModel, Cmd.none)
+    SetText text ->
+      let
+        updatedModel =
+          { model | text = text }
+      in
+        (updatedModel, Cmd.none)

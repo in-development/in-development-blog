@@ -9,10 +9,11 @@ import Post.New.Commands exposing (addPost)
 update : Msg -> Post -> (Post, Cmd Msg)
 update msg model =
   case msg of
-    SavePost post ->
-      (model, (addPost post))
-    AddPostSucceed post ->
-      (post, Cmd.none)
+    SavePost posts post ->
+      (model, (addPost posts post))
+    AddPostSucceed posts ->
+      {--((List.head posts), Cmd.none)--}
+      (model, Cmd.none)
     AddPostFail _ ->
       (model, Cmd.none)
     SetAuthor name ->

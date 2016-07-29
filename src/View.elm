@@ -76,7 +76,7 @@ pageView model =
       in
       div []
           [ div [ style [("margin-top", "1em")] ]
-                [ Html.App.map NewPostMessagesMsg (newPostView post) ]
+                [ Html.App.map NewPostMessagesMsg (newPostView model.posts post) ]
           ]
 
     NotFoundRoute ->

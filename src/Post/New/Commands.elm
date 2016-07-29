@@ -1,37 +1,44 @@
 module Post.New.Commands exposing (..)
 
 
+import Post.Models exposing (Posts)
 import Post.Show.Models exposing (Post)
 import Post.New.Messages exposing (..)
 
 
 import Http
-import Json.Decode as Json exposing ((:=))
 import Json.Encode as Encode
+import Json.Decode as Json exposing ((:=))
 import Task
 
 
-addPost : Post -> Cmd Post.New.Messages.Msg
-addPost post =
+addPost : Posts -> Post -> Cmd Post.New.Messages.Msg
+addPost posts post =
   let
+    newPosts =
+      List.append posts [post]
+
+    postsEncoder =
+      List.map (\post -> postEncoder post) newPosts
+    
     body = 
-      postEncoder post
+        Encode.list postsEncoder
         |> Encode.encode 0
         |> Http.string
+
+    request =
+      { verb = "PUT"
+      , headers = [("Content-type", "application/json")]
+      , url = url
+      , body = body
+      }
+
     url =
       "https://in-development-3.firebaseio.com/blog/posts.json"
   in
-    Http.post decodePost url body 
-    |> Task.perform AddPostFail AddPostSucceed
+    Http.fromJson (Json.list decodePost) (Http.send Http.defaultSettings request)
+      |> Task.perform AddPostFail AddPostSucceed
 
-
-decodePost : Json.Decoder Post
-decodePost =
-  Json.object3
-    Post
-    ("id" := Json.int)
-    ("author" := Json.string)
-    ("text" := Json.string)
 
 postEncoder : Post -> Encode.Value
 postEncoder post = 
@@ -40,3 +47,11 @@ postEncoder post =
       , ("author", Encode.string post.author)
       , ("text", Encode.string post.text)
       ]
+
+decodePost : Json.Decoder Post
+decodePost =
+  Json.object3
+    Post
+    ("id" := Json.int)
+    ("author" := Json.string)
+    ("text" := Json.string)

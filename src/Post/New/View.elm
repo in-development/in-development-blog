@@ -6,11 +6,11 @@ import Html.Events exposing (onInput, onClick)
 
 
 import Post.New.Messages exposing (..)
-import Post.Models exposing (Post)
+import Post.Models exposing (Posts, Post)
 
 
-newPostView : Post -> Html.Html Msg
-newPostView model = div []
+newPostView : Posts -> Post -> Html.Html Msg
+newPostView posts model = div []
                   [ div [ style [("margin", "1em")] ]
                         [ label [ style [("display", "block"), ("clear", "right")] ]
                                 [ text "Author:"]
@@ -42,7 +42,7 @@ newPostView model = div []
                                           ("font-size", "1em"),
                                           ("cursor", "pointer")
                                          ]
-                                 , onClick (SavePost model) 
+                                 , onClick (SavePost posts model) 
                                  ]
                                  [ text "Save" ]
                         ]

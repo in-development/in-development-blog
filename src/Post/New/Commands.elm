@@ -7,16 +7,26 @@ import Post.New.Messages exposing (..)
 
 
 import Http
+import Task
+
+
 import Json.Encode as Encode
 import Json.Decode as Json exposing ((:=))
-import Task
+
+
+import Base64
 
 
 addPost : Posts -> Post -> Cmd Post.New.Messages.Msg
 addPost posts post =
   let
+    textBase64 =
+      case (Base64.encode post.text) of
+        Ok text -> text
+        otherwise -> post.text
+
     newPosts =
-      List.append posts [post]
+      List.append posts [{ post | text = textBase64 }]
 
     postsEncoder =
       List.map (\post -> postEncoder post) newPosts

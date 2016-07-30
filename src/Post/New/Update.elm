@@ -12,7 +12,6 @@ update msg model =
     SavePost posts post ->
       (model, (addPost posts post))
     AddPostSucceed posts ->
-      {--((List.head posts), Cmd.none)--}
       (model, Cmd.none)
     AddPostFail _ ->
       (model, Cmd.none)

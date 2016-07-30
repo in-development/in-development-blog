@@ -27,6 +27,7 @@ newPostView posts model = div []
                                            , ("height", "40%")
                                            , ("min-height", "400px")
                                            ]
+                                   , value model.text
                                    , onInput SetText
                                    ]
                                    []

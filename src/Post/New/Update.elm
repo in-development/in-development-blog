@@ -25,8 +25,18 @@ update msg model =
 
         navCmd =
           navigationCmd path
+
+        lastPost =
+          List.head (List.reverse posts)
+
+        newPost =
+          case lastPost of
+            Just new -> new
+            otherwise -> model
+
       in  
-        (model, navCmd)
+        (newPost, navCmd)
+
     AddPostFail _ ->
       (model, Cmd.none)
     SetAuthor name ->

@@ -18,6 +18,7 @@ update msg model =
   case msg of
     SavePost posts post ->
       (model, (addPost posts post))
+
     AddPostSucceed posts ->
       let
         path =
@@ -37,14 +38,17 @@ update msg model =
       in  
         (newPost, navCmd)
 
-    AddPostFail _ ->
+    AddPostFail error ->
+      (Debug.log ("Error to add new post: " ++ toString error))
       (model, Cmd.none)
+
     SetAuthor name ->
       let
         updatedModel =
           { model | author = name }
       in
         (updatedModel, Cmd.none)
+
     SetText text ->
       let
         updatedModel =

@@ -29,7 +29,7 @@ addPost posts post =
       List.append posts [{ post | text = textBase64 }]
 
     postsEncoder =
-      List.map (\post -> postEncoder post) newPosts
+      List.map postEncoder newPosts
     
     body = 
         Encode.list postsEncoder

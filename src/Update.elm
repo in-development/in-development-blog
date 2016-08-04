@@ -12,6 +12,8 @@ import Models exposing (AppModel)
 
 import Post.List.Update
 import Post.Show.Update
+import Post.New.Messages as PostNewMessages
+import Post.New.Update
 import Post.Models exposing (initialPost)
 
 
@@ -37,6 +39,18 @@ update msg model =
           Post.Show.Update.update subMsg initialPost
       in
         ( model, Cmd.map PostMessagesMsg msg )
+
+    NewPostMessagesMsg subMsg ->
+      let
+        (updatedNewPost, msg) =
+          Post.New.Update.update subMsg model.newPost
+
+        updatedPosts = 
+          case subMsg of
+            PostNewMessages.AddPostSucceed newPosts -> newPosts 
+            otherwise -> model.posts
+      in
+        ( { model | newPost = updatedNewPost, posts = updatedPosts }, Cmd.map NewPostMessagesMsg msg )
 
     NavigationMessagesMsg subMsg ->
       let

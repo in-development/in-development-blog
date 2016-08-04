@@ -17,6 +17,7 @@ import Routing.Models exposing (..)
 
 import Post.Show.View exposing (postView)
 import Post.List.View exposing (postsView)
+import Post.New.View exposing (newPostView)
 
 
 import Navigation.View exposing (menuView)
@@ -61,6 +62,22 @@ pageView model =
                 ]
           Nothing ->
             notFoundView
+
+    NewPostRoute ->
+      let
+        newId =
+          List.length model.posts
+
+        newPost =
+          model.newPost
+        
+        post =
+          { newPost | id = newId } 
+      in
+      div []
+          [ div [ style [("margin-top", "1em")] ]
+                [ Html.App.map NewPostMessagesMsg (newPostView model.posts post) ]
+          ]
 
     NotFoundRoute ->
       notFoundView

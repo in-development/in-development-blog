@@ -1,25 +1,20 @@
 FROM morais/elm
 
-# Install NodeJS
-RUN apt-get update
-RUN apt-get install curl -y
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get install nodejs -y
-
-# Copy Elm file
 WORKDIR /app
-COPY ./webpack.config.js /app/webpack.config.js
-COPY ./package.json /app/package.json
-COPY ./elm-package.json /app/elm-package.json
 
-#Copy server files
-COPY ./server.js /app/server.js
+# Install npm dependencies
+COPY ./package.json /app/package.json
+RUN npm install
 
 # Run ELM-PACKAGE install
-RUN npm install
+COPY ./elm-package.json /app/elm-package.json
 RUN elm-package install -y
+
+# Copy source files
+COPY ./server.js /app/server.js
+COPY ./webpack.config.js /app/webpack.config.js
 COPY ./src /app/src
 
 RUN npm run build
 
-CMD npm start
+CMD ["npm", "start"]

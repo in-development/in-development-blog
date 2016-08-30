@@ -29,9 +29,6 @@ reverse route =
         ""
 
 
-program = Navigation.program
-
-
 navigationCmd : String -> Cmd a
 navigationCmd path =
   Navigation.modifyUrl (makeUrl routerConfig path)

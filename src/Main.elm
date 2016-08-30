@@ -1,10 +1,7 @@
-import Html.App as Html
-
+import Navigation
 
 import Routing.Models exposing (..)
-import Routing.Config exposing (routerConfig)
-import Routing.Utils exposing (urlParser, program)
-
+import Routing.Utils exposing (urlParser)
 
 import Models exposing (..)
 import Messages exposing (..)
@@ -12,11 +9,7 @@ import Update exposing (..)
 import View exposing (..)
 import Subscriptions exposing (..)
 
-
 import Post.Commands exposing (getPosts)
-
-
-import Array
 
 
 urlUpdate : ( Route, Location ) -> AppModel -> ( AppModel, Cmd Msg )
@@ -41,8 +34,9 @@ init ( route, location ) =
     ( newAppModel route location, Cmd.map PostsMessagesMsg getPosts )
 
 
+main : Program Never
 main =
-    program urlParser
+  Navigation.program urlParser
     { init = init
     , view = view
     , update = update

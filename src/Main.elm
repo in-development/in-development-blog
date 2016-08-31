@@ -12,26 +12,14 @@ import Subscriptions exposing (..)
 import Post.Commands exposing (getPosts)
 
 
-urlUpdate : ( Route, Location ) -> AppModel -> ( AppModel, Cmd Msg )
-urlUpdate ( route, location ) model =
-  let
-    isPosts =
-      let path = location.path
-      in
-        List.length path == 1 && List.all (\p -> p == "posts") path
-
-    r =
-      case isPosts of
-        True -> PostsRoute
-        _ -> route
-
-  in
-    ( { model | route = r, location = location }, Cmd.none )
+urlUpdate : Route -> AppModel -> ( AppModel, Cmd Msg )
+urlUpdate route model =
+  ({ model | route = route }, Cmd.none)
 
 
-init : ( Route, Location ) -> ( AppModel, Cmd Msg )
-init ( route, location ) =
-    ( newAppModel route location, Cmd.map PostsMessagesMsg getPosts )
+init : Route -> ( AppModel, Cmd Msg )
+init route =
+  ( newAppModel route, Cmd.map PostsMessagesMsg getPosts )
 
 
 main : Program Never

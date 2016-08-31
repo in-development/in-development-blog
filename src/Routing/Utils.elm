@@ -1,13 +1,38 @@
-module Routing.Utils exposing (..)
+module Routing.Utils exposing (urlParser)
 
 
-import Hop exposing (matchUrl, makeUrl, matcherToPath)
 import Navigation
+import UrlParser exposing ((</>), s, format, oneOf, int)
+import String
 
 import Routing.Models exposing (..)
-import Routing.Config exposing (routerConfig)
 
 
-urlParser : Navigation.Parser ( Route, Location )
+routeMatchers : UrlParser.Parser (Route -> a) a
+routeMatchers =
+  oneOf
+    [
+      format PostsRoute (s "" ),
+      format AdminRoute (s "admin" ),
+      format PostRoute (s "post" </> int ),
+      format NewPostRoute (s "post" </> s "new" )
+    ]
+
+
+parser : Navigation.Location -> Route
+parser location =
+  let
+    result =
+      location.hash
+        |> String.dropLeft 2
+        |> UrlParser.parse identity routeMatchers
+  in
+    case result of
+      Ok route -> route
+
+      Err _ -> NotFoundRoute
+
+
+urlParser : Navigation.Parser Route
 urlParser =
-    Navigation.makeParser (.href >> matchUrl routerConfig)
+    Navigation.makeParser parser

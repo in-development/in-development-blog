@@ -11,16 +11,14 @@ type alias AppModel =
   { title : String
   , posts : Posts
   , newPost : Post
-  , location : Location
   , route : Route
   }
 
 
-newAppModel : Route -> Location -> AppModel
-newAppModel route location =
+newAppModel : Route -> AppModel
+newAppModel route =
     { title = "Posts"
     , posts = []
     , newPost = initialPost
-    , location = location
     , route = route
     }

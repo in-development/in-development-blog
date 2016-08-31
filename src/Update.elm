@@ -1,11 +1,6 @@
 module Update exposing (..)
 
 
-import Routing.Models exposing (..)
-import Routing.Config exposing (routerConfig)
-import Routing.Utils exposing (reverse, navigationCmd)
-
-
 import Messages exposing (..)
 import Models exposing (AppModel)
 
@@ -45,9 +40,9 @@ update msg model =
         (updatedNewPost, msg) =
           Post.New.Update.update subMsg model.newPost
 
-        updatedPosts = 
+        updatedPosts =
           case subMsg of
-            PostNewMessages.AddPostSucceed newPosts -> newPosts 
+            PostNewMessages.AddPostSucceed newPosts -> newPosts
             otherwise -> model.posts
       in
         ( { model | newPost = updatedNewPost, posts = updatedPosts }, Cmd.map NewPostMessagesMsg msg )

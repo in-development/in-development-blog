@@ -1,9 +1,6 @@
 module Navigation.Update exposing (..)
 
-
-import Routing.Utils exposing (reverse, navigationCmd)
-import Routing.Models exposing (..)
-
+import Navigation
 
 import Navigation.Messages exposing (..)
 
@@ -12,15 +9,7 @@ update : Msg -> Cmd Msg
 update msg =
   case msg of
     ShowPosts ->
-      let
-        path =
-          reverse PostsRoute
-      in
-        navigationCmd path 
+      Navigation.newUrl ("#/")
 
     ShowAdmin ->
-      let
-        path =
-          reverse AdminRoute
-      in
-        navigationCmd path
+      Navigation.newUrl ("#/admin")

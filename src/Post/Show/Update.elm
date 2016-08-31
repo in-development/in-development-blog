@@ -1,8 +1,7 @@
 module Post.Show.Update exposing (..)
 
 
-import Routing.Utils exposing (reverse, navigationCmd)
-import Routing.Models exposing (..)
+import Navigation
 
 
 import Post.Show.Messages exposing (..)
@@ -14,8 +13,7 @@ update msg model =
   case msg of
     ShowPost post ->
       let
-        path =
-          reverse (PostRoute post.id)
+        path = "#/post/" ++ (toString post.id)
 
       in
-        ( model, navigationCmd path )
+        ( model, Navigation.newUrl path )

@@ -1,7 +1,7 @@
 import Navigation
 
 import Routing.Models exposing (..)
-import Routing.Utils exposing (urlParser)
+import Routing.Parser exposing (urlParser)
 
 import Models exposing (..)
 import Messages exposing (..)

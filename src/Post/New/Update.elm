@@ -6,11 +6,7 @@ import Post.Models exposing (Post)
 import Post.New.Commands exposing (addPost)
 
 
-import Routing.Utils exposing (reverse, navigationCmd)
-import Routing.Models exposing (..)
-
-
-import Post.Commands exposing (getPosts)
+import Navigation
 
 
 update : Msg -> Post -> (Post, Cmd Msg)
@@ -21,12 +17,6 @@ update msg model =
 
     AddPostSucceed posts ->
       let
-        path =
-          reverse PostsRoute
-
-        navCmd =
-          navigationCmd path
-
         lastPost =
           List.head (List.reverse posts)
 
@@ -35,8 +25,8 @@ update msg model =
             Just new -> new
             otherwise -> model
 
-      in  
-        (newPost, navCmd)
+      in
+        (newPost, Navigation.newUrl "#/")
 
     AddPostFail error ->
       (Debug.log ("Error to add new post: " ++ toString error))

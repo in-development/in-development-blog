@@ -1,4 +1,4 @@
-module Routing.Parser exposing (urlParser)
+module Routing.Parser exposing (urlParser, parser)
 
 
 import Navigation

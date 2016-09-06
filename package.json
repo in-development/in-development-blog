@@ -29,13 +29,14 @@
     "express": "^4.14.0"
   },
   "devDependencies": {
-    "file-loader": "^0.8.5",
     "css-loader": "^0.23.1",
-    "style-loader": "^0.13.1",
+    "elm-css": "^0.6.0",
     "elm-webpack-loader": "^2.0.1",
+    "file-loader": "^0.8.5",
+    "no-export-loader": "^1.0.0",
+    "style-loader": "^0.13.1",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "^1.14.1",
-    "no-export-loader": "^1.0.0"
+    "webpack-dev-server": "^1.14.1"
   }
 }

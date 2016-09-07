@@ -29,7 +29,7 @@ import Header.View exposing (headerView)
 view : AppModel -> Html.Html Msg
 view model =
   div []
-      [ headerView
+      [ Html.App.map HeaderMessagesMsg headerView
       , Html.App.map NavigationMessagesMsg menuView
       , pageView model
       ]

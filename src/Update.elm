@@ -12,9 +12,6 @@ import Post.New.Update
 import Post.Models exposing (initialPost)
 
 
-import Navigation.Update
-
-
 import Header.Update
 
 
@@ -50,13 +47,6 @@ update msg model =
       in
         ( { model | newPost = updatedNewPost, posts = updatedPosts }, Cmd.map NewPostMessagesMsg msg )
 
-    NavigationMessagesMsg subMsg ->
-      let
-        msg =
-          Navigation.Update.update subMsg
-
-      in
-        ( model, Cmd.map NavigationMessagesMsg msg )
 
     HeaderMessagesMsg subMsg ->
       let

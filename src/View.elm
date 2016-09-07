@@ -20,9 +20,6 @@ import Post.List.View exposing (postsView)
 import Post.New.View exposing (newPostView)
 
 
-import Navigation.View exposing (menuView)
-
-
 import Header.View exposing (headerView)
 
 
@@ -30,7 +27,6 @@ view : AppModel -> Html.Html Msg
 view model =
   div []
       [ Html.App.map HeaderMessagesMsg headerView
-      , Html.App.map NavigationMessagesMsg menuView
       , pageView model
       ]
     

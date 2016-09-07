@@ -10,9 +10,6 @@ import Post.Show.Messages as PostMessages
 import Post.New.Messages as NewPostMessages
 
 
-import Navigation.Messages as NavigationMessages
-
-
 import Header.Messages as HeaderMessages
 
 type Msg
@@ -20,5 +17,4 @@ type Msg
   | PostsMessagesMsg PostsMessages.Msg
   | PostMessagesMsg PostMessages.Msg
   | NewPostMessagesMsg NewPostMessages.Msg
-  | NavigationMessagesMsg NavigationMessages.Msg
   | HeaderMessagesMsg HeaderMessages.Msg

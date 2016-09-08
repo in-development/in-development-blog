@@ -1,4 +1,4 @@
-module MainCSS exposing (css)
+module MainCss exposing (css)
 
 
 import Css exposing (..)

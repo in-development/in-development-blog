@@ -1,9 +1,10 @@
 module Header.View exposing (..)
 
 
-import Html exposing (header, text, h1, Attribute)
+import Html exposing (header, text, h1, Attribute, div)
 import Html.Attributes exposing (style)
 import Html.App
+import Html.CssHelpers
 
 
 import Header.Messages exposing (..)
@@ -12,23 +13,18 @@ import Header.Messages exposing (..)
 import Navigation.View exposing (menuView)
 
 
-headerStyle : Attribute Msg
-headerStyle =
-  style [ ("backgroundColor", "#000000")
-        , ("color", "#FFFFFF")
-        , ("padding", "1em")
-        ]
+import Header.HeaderCss as HeaderCss
 
 
-titleStyle : Attribute Msg
-titleStyle =
-  style [ ("margin", "0") ]
+{ class } =
+    Html.CssHelpers.withNamespace "header"
 
 
 headerView : Html.Html Msg
 headerView =
-  header [ headerStyle ]
-         [ h1 [ titleStyle ]
+  header [ class [HeaderCss.Header] ]
+         [ h1 [ class [HeaderCss.Title] ]
               [ text "In development" ]
-         , Html.App.map NavigationMessagesMsg menuView
+         , div [ class [HeaderCss.NavBar] ]
+               [ Html.App.map NavigationMessagesMsg menuView ]
          ]

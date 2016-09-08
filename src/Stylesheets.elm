@@ -1,9 +1,12 @@
 port module Stylesheets exposing (..)
 
 import Css.File exposing (..)
-import MainCSS
 import Html exposing (div)
 import Html.App as Html
+
+
+import MainCss
+import Header.HeaderCss as HeaderCss
 
 
 port files : CssFileStructure -> Cmd msg
@@ -11,7 +14,7 @@ port files : CssFileStructure -> Cmd msg
 
 cssFiles : CssFileStructure
 cssFiles =
-    toFileStructure [ ( "src/assets/styles.css", compile [ MainCSS.css ] ) ]
+    toFileStructure [ ( "src/assets/styles.css", compile [ MainCss.css ] ), ( "src/assets/header.css", compile [ HeaderCss.css ] )]
 
 
 main : Program Never

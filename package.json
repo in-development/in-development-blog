@@ -8,7 +8,7 @@
     "start": "node server.js",
     "build": "webpack",
     "watch": "webpack --watch",
-    "dev": "webpack-dev-server --host 0.0.0.0 --port 8000"
+    "dev": "node_modules/elm-css/elm-css.js src/Stylesheets.elm && webpack-dev-server --host 0.0.0.0 --port 8000"
   },
   "repository": {
     "type": "git",

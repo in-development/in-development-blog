@@ -1,16 +1,14 @@
 .headerNavBar {
-    margin-top: 0.3em;
+    margin-top: 0.6em;
 }
 
 .headerHeader {
-    background-color: #000000;
+    background-color: rgba(217, 217, 217, 0.4);
     color: #FFFFFF;
     padding-top: 1em;
-    padding-right: 1em;
-    padding-bottom: 0.4em;
-    padding-left: 1em;
 }
 
 .headerTitle {
     margin: 0;
+    margin-left: 0.4em;
 }

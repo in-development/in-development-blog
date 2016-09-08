@@ -14,18 +14,16 @@ type CssClasses
 css =
   (stylesheet << namespace "header")
   [ (.) NavBar
-      [ marginTop (em 0.3)
+      [ marginTop (em 0.6)
       ]
   , (.) Header
       [
-        backgroundColor (hex "000000")
+        backgroundColor (rgba 217 217 217 0.4)
       , color (hex "FFFFFF")
       , paddingTop (em 1)
-      , paddingRight (em 1)
-      , paddingBottom (em 0.4)
-      , paddingLeft (em 1)
       ]
   , (.) Title
       [ margin zero
+      , marginLeft (em 0.4)
       ]
   ]

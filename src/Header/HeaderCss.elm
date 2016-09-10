@@ -18,7 +18,7 @@ css =
       ]
   , (.) Header
       [
-        backgroundColor (rgba 217 217 217 0.4)
+        backgroundColor (rgba 247 247 247 0.5)
       , color (hex "000000")
       , paddingTop (em 1)
       ]

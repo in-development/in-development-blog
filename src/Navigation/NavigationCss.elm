@@ -13,7 +13,7 @@ type CssClasses
 css =
   (stylesheet << namespace "navigation")
   [ (.) Container
-      [ backgroundColor (rgba 210 220 230 0.5)
+      [ backgroundColor (rgba 210 220 230 0.2)
       , padding (em 0.6)
       , color (hex "FFFFFF")
       ]

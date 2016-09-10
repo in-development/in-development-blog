@@ -19,7 +19,7 @@ css =
   , (.) Header
       [
         backgroundColor (rgba 217 217 217 0.4)
-      , color (hex "FFFFFF")
+      , color (hex "000000")
       , paddingTop (em 1)
       ]
   , (.) Title

@@ -21,3 +21,14 @@
     border-bottom-width: 0px;
     color: #FFFFFF;
 }
+
+.navigationNavItemSelected {
+    background-color: rgba(210, 220, 230, 1);
+    border-color: #000000;
+    border-style: solid;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    color: #FFFFFF;
+}

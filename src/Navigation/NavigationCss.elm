@@ -8,6 +8,7 @@ import Css.Namespace exposing (namespace)
 type CssClasses
     = Container
     | NavItem
+    | NavItemSelected
 
 
 css =
@@ -32,5 +33,15 @@ css =
           , color (hex "FFFFFF")
           ]
       , color (hex "000000")
+      ]
+  , (.) NavItemSelected
+      [ backgroundColor (rgba 210 220 230 1)
+      , borderColor (hex "000000")
+      , borderStyle solid
+      , borderLeftWidth (px 1)
+      , borderRightWidth (px 1)
+      , borderTopWidth (px 0)
+      , borderBottomWidth (px 0)
+      , color (hex "FFFFFF")
       ]
   ]

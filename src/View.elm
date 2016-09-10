@@ -26,7 +26,7 @@ import Header.View exposing (headerView)
 view : AppModel -> Html.Html Msg
 view model =
   div []
-      [ Html.App.map HeaderMessagesMsg headerView
+      [ Html.App.map HeaderMessagesMsg (headerView model.route)
       , pageView model
       ]
     

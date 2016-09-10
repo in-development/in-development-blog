@@ -3,6 +3,7 @@
 require('./assets/markdown.css');
 require('./assets/styles.css');
 require('./assets/header.css');
+require('./assets/navigation.css');
 
 // Require index.html so it gets copied to dist
 require('./index.html');

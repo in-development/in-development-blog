@@ -21,7 +21,6 @@ menuView =
     div [ class [NavigationCss.Container] ]
         [ div []
               [ menuLink ShowPosts "btnPosts" "Posts"
-              , text " | "
               , menuLink ShowAdmin "btnAdmin" "Admin"
               ]
         ]

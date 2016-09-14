@@ -6,7 +6,7 @@ import Html.App
 import Markdown
 
 
-import Post.Show.View exposing (postView)
+import Post.Show.View exposing (postSummary)
 
 
 import Post.List.Models exposing (Posts)
@@ -16,7 +16,7 @@ import Post.List.Messages exposing (..)
 postsView : Posts -> Html.Html Msg
 postsView posts =
   let
-    postList = List.map postView posts
+    postList = List.map postSummary posts
 
     postVW =
       case posts of

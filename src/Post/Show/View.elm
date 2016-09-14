@@ -5,6 +5,7 @@ import Html exposing (div, text, a)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (style, class, href, id)
 import Markdown
+import String exposing (..)
 
 
 import Post.Show.Models exposing (Post)
@@ -25,6 +26,27 @@ postView post =
         Err _ -> ""
 
   in
+    div [ style [("border", "solid 1px #000000"), ("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
+        [ div [ style [("margin", "0.5em 0 0 0.5em")]]
+              [
+                postText postTextStr True
+              ]
+        , div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
+              [ text post.author ]
+        ]
+
+
+postSummary : Post -> Html.Html Msg
+postSummary post =
+  let
+    postId = "posts-" ++ (toString post.id)
+
+    postTextStr =
+      case (Base64.decode post.text) of
+        Ok text -> text
+        Err _ -> ""
+
+  in
     a [ id postId
       , href "javascript://"
       , onClick (ShowPost post)
@@ -34,7 +56,7 @@ postView post =
         div [ style [("border", "solid 1px #000000"), ("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
             [ div [ style [("margin", "0.5em 0 0 0.5em")]]
                   [
-                    postText postTextStr
+                    postText postTextStr False
                   ]
             , div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
                   [ text post.author ]
@@ -42,6 +64,16 @@ postView post =
       ]
 
 
-postText : String -> Html.Html Msg
-postText text =
-  Markdown.toHtml [class "content hlsj"] text
+postText : String -> Bool -> Html.Html Msg
+postText text complete =
+  let
+    newText =
+      if complete then
+        Just (join "\n" (List.map (\line -> if line == "-----<<<<<continue<<<<<-----" then "" else line) (lines text)))
+      else
+        List.head (split "-----<<<<<continue<<<<<-----" text)
+
+  in
+    case newText of
+      Just text' -> Markdown.toHtml [class "content hlsj"] text'
+      Nothing -> Markdown.toHtml [class "content hlsj"] ""

@@ -59,7 +59,7 @@ pageView model =
         case post of
           Just p ->
             div []
-                [ div [ style [("margin-top", "1em")] ]
+                [ div [ style [("margin-top", "3em")] ]
                       [ Html.App.map PostMessagesMsg (postView p) ]
                 ]
           Nothing ->

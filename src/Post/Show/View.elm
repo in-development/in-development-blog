@@ -26,7 +26,7 @@ postView post =
         Err _ -> ""
 
   in
-    div [ style [("border", "solid 1px #000000"), ("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
+    div [ style [("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
         [ div [ style [("margin", "0.5em 0 0 0.5em")]]
               [
                 postText postTextStr True

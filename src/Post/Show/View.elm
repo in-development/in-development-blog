@@ -1,7 +1,7 @@
 module Post.Show.View exposing (..)
 
 
-import Html exposing (div, text, a)
+import Html exposing (div, text, a, hr)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (style, class, href, id)
 import Markdown
@@ -53,13 +53,21 @@ postSummary post =
       , style [("text-decoration", "none"), ("color", "#000000")]
       ]
       [
-        div [ style [("border", "solid 1px #000000"), ("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
+        div [ style [("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
             [ div [ style [("margin", "0.5em 0 0 0.5em")]]
                   [
                     postText postTextStr False
                   ]
             , div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
                   [ text post.author ]
+            , hr [ style [ ("border", "0")
+                         , ("height", "2px")
+                         , ("border-top", "1px dashed #000000")
+                         , ("border-bottom", "1px dashed black")
+                         , ("margin-top", "4.5em")
+                         ]
+                 ]
+                 [ ]
             ]
       ]
 

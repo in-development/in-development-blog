@@ -52,7 +52,12 @@ postBody post complete =
         Err _ -> ""
 
   in
-    div [ style [("margin", "0.5em 0 0 0.5em")]]
+    div [ style [ ("margin", "0.5em 0 0 0.5em")
+                , ("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
+                , ("text-rendering", "optimizeLegibility")
+                ]
+        , class "post"
+        ]
         [
           postText postTextStr complete
         ]

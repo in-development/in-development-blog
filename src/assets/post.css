@@ -1,0 +1,12 @@
+.post h1 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.post p {
+  line-height: 1.7;
+  color: #666;
+  font-weight: 300;
+  letter-spacing: 0.4px;
+}

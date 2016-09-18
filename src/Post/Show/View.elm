@@ -1,7 +1,7 @@
 module Post.Show.View exposing (..)
 
 
-import Html exposing (div, text, a, hr)
+import Html exposing (div, text, a, hr, span, ul, li)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (style, class, href, id)
 import Markdown
@@ -17,10 +17,23 @@ import Base64
 
 postView : Post -> Html.Html Msg
 postView post =
-  div [ style [("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
-    [ postBody post True
-    , postAuthor post
-    ]
+  let
+    postTextStr =
+      case (Base64.decode post.text) of
+        Ok text -> text
+        Err _ -> ""
+
+    author =
+      if postHasAuthorPosition postTextStr then
+        div [] []
+      else
+        postSimpleAuthor post
+
+  in
+    div [ style [("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
+        [ postBody post True
+        , author
+        ]
 
 
 postSummary : Post -> Html.Html Msg
@@ -37,7 +50,7 @@ postSummary post =
       [
         div [ style [("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
             [ postBody post False
-            , postAuthor post
+            , postSimpleAuthor post
             , lineBreak
             ]
       ]
@@ -58,31 +71,133 @@ postBody post complete =
                 ]
         , class "post"
         ]
-        [
-          postText postTextStr complete
-        ]
+        [ if complete then postComplete postTextStr post.author else postIncomplete postTextStr ]
 
 
-postText : String -> Bool -> Html.Html Msg
-postText text complete =
+lineBreakText =
+  "-----<<<<<continue<<<<<-----"
+
+
+postHeadLineBreak : String -> Html.Html Msg
+postHeadLineBreak text =
   let
-    lineBreakText =
-      "-----<<<<<continue<<<<<-----"
+    head =
+      case List.head (split lineBreakText text) of
+        Just head -> head
+        Nothing -> ""
 
     newText =
-      if complete then
-        Just (join "\n" (List.map (\line -> if line == lineBreakText then "" else line) (lines text)))
-      else
-        List.head (split lineBreakText text)
+      List.map (\line -> if postHasAuthorPosition line then "" else line) (lines head)
+  
+  in
+    Markdown.toHtml [class "content hlsj"] (join "\n" newText)
+
+
+postIncomplete : String -> Html.Html Msg
+postIncomplete text =
+  postHeadLineBreak text
+
+
+authorText =
+  "-----<<<<<author-----<<<<<"
+
+
+postHeadAuthor : String -> Html.Html Msg
+postHeadAuthor text =
+  let
+    head =
+      case List.head (split authorText text) of
+        Just head -> head
+        Nothing -> ""
+
+    newText =
+      List.map (\line -> if lineBreakText == line then "" else line) (lines head)
 
   in
-    case newText of
-      Just text' -> Markdown.toHtml [class "content hlsj"] text'
-      Nothing -> Markdown.toHtml [class "content hlsj"] ""
+    Markdown.toHtml [class "content hlsj"] (join "\n" newText)
 
 
-postAuthor : Post -> Html.Html Msg
-postAuthor post =
+postTailAuthor : String -> Html.Html Msg
+postTailAuthor text =
+  let
+    tail =
+      case List.tail (split authorText text) of
+        Just tail -> tail
+        Nothing -> [""]
+
+    newText =
+      List.map (\line -> if lineBreakText == line then "" else line) tail
+  
+  in
+    Markdown.toHtml [class "content hlsj"] (join "\n" newText)
+
+
+postComplete : String -> String -> Html.Html Msg
+postComplete text author =
+  div []
+      [ postHeadAuthor text
+      , if postHasAuthorPosition text then postCompleteAuthor author else div [] []
+      , postTailAuthor text
+      ]
+
+
+postHasLineBreakMarking : String -> Bool
+postHasLineBreakMarking text =
+  if (List.length (List.filter (\line -> line == lineBreakText) (lines text))) == 0 then
+    False
+  else
+    True
+
+
+postHasAuthorPosition : String -> Bool
+postHasAuthorPosition text =
+  if (List.length (List.filter (\line -> line == authorText) (lines text))) == 0 then
+    False
+  else
+    True
+
+
+postCompleteAuthor : String -> Html.Html Msg
+postCompleteAuthor author =
+  div [ style [ ("text-align", "center")
+              , ("margin-bottom", "3em")
+              ]
+      ]
+      [ a [ href "#"
+          , style [ ("text-decoration", "none")
+                  , ("color", "#000000")
+                  , ("font-size", "1.5em")
+                  , ("bold", "300")
+                  ]
+          ]
+          [ text author ]
+      , ul []
+           [ li [ style [ ("display", "inline")
+                        , ("padding", "0.5em")
+                        ]
+                ]
+                [ text "GitHub" ]
+           , li [ style [ ("display", "inline")
+                        , ("padding", "0.5em")
+                        ]
+                ]
+                [ text "Twietter" ]
+           , li [ style [ ("display", "inline")
+                        , ("padding", "0.5em")
+                        ]
+                ]
+                [ text "LinkedIn" ]
+           , li [ style [ ("display", "inline")
+                        , ("padding", "0.5em")
+                        ]
+                ]
+                [ text "Mail" ]
+           ]
+      ]
+
+
+postSimpleAuthor : Post -> Html.Html Msg
+postSimpleAuthor post =
   div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
       [ text post.author ]
 

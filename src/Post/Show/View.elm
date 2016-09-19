@@ -81,6 +81,14 @@ lineBreakText =
   "-----<<<<<continue<<<<<-----"
 
 
+postHasLineBreakMarking : String -> Bool
+postHasLineBreakMarking text =
+  if (List.length (List.filter (\line -> line == lineBreakText) (lines text))) == 0 then
+    False
+  else
+    True
+
+
 postHeadLineBreak : String -> Html.Html Msg
 postHeadLineBreak text =
   let
@@ -114,7 +122,7 @@ postHeadAuthor text =
         Nothing -> ""
 
     newText =
-      List.map (\line -> if lineBreakText == line then "" else line) (lines head)
+      List.map (\line -> if postHasLineBreakMarking line then "" else line) (lines head)
 
   in
     Markdown.toHtml [class "content hlsj"] (join "\n" newText)
@@ -129,7 +137,7 @@ postTailAuthor text =
         Nothing -> [""]
 
     newText =
-      List.map (\line -> if lineBreakText == line then "" else line) tail
+      List.map (\line -> if postHasLineBreakMarking line then "" else line) tail
   
   in
     Markdown.toHtml [class "content hlsj"] (join "\n" newText)
@@ -142,14 +150,6 @@ postComplete text author =
       , if postHasAuthorPosition text then postCompleteAuthor author else div [] []
       , postTailAuthor text
       ]
-
-
-postHasLineBreakMarking : String -> Bool
-postHasLineBreakMarking text =
-  if (List.length (List.filter (\line -> line == lineBreakText) (lines text))) == 0 then
-    False
-  else
-    True
 
 
 postHasAuthorPosition : String -> Bool
@@ -166,7 +166,7 @@ postCompleteAuthor author =
               , ("margin-bottom", "3em")
               ]
       ]
-      [ a [ href "#"
+      [ a [ href "javascript://"
           , style [ ("text-decoration", "none")
                   , ("color", "#000000")
                   , ("font-size", "1.5em")
@@ -181,7 +181,7 @@ postCompleteAuthor author =
                         ]
                 ]
                 [ a [ style [ ("text-decoration", "none") ]
-                    , href "#"
+                    , href "javascript://"
                     ]
                     [ gitHub ]
                 ]
@@ -190,7 +190,7 @@ postCompleteAuthor author =
                         ]
                 ]
                 [ a [ style [ ("text-decoration", "none") ]
-                    , href "#"
+                    , href "javascript://"
                     ]
                     [ twitter ]
                 ]
@@ -199,7 +199,7 @@ postCompleteAuthor author =
                         ]
                 ]
                 [ a [ style [ ("text-decoration", "none") ]
-                    , href "#"
+                    , href "javascript://"
                     ]
                     [ linkedIn ]
                 ]
@@ -207,7 +207,11 @@ postCompleteAuthor author =
                         , ("padding", "0.5em")
                         ]
                 ]
-                [ mail ]
+                [ a [ style [ ("text-decoration", "none") ]
+                    , href "javascript://"
+                    ]
+                    [ mail ]
+                ]
            ]
       ]
 
@@ -215,7 +219,13 @@ postCompleteAuthor author =
 postSimpleAuthor : Post -> Html.Html Msg
 postSimpleAuthor post =
   div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
-      [ text post.author ]
+      [ a [ href "javascript://"
+          , style [ ("text-decoration", "none")
+                  , ("color", "#000")
+                  ]
+          ]
+          [ text post.author ]
+      ]
 
 
 lineBreak : Html.Html Msg

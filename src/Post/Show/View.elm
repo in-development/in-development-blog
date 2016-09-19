@@ -15,6 +15,9 @@ import Post.Show.Messages exposing (..)
 import Base64
 
 
+import SocialNetwork.Logo exposing (..)
+
+
 postView : Post -> Html.Html Msg
 postView post =
   let
@@ -174,19 +177,32 @@ postCompleteAuthor author =
       , ul []
            [ li [ style [ ("display", "inline")
                         , ("padding", "0.5em")
+                        , ("margin-left", "-2.5em")
                         ]
                 ]
-                [ text "GitHub" ]
+                [ a [ style [ ("text-decoration", "none") ]
+                    , href "#"
+                    ]
+                    [ gitHub ]
+                ]
            , li [ style [ ("display", "inline")
                         , ("padding", "0.5em")
                         ]
                 ]
-                [ text "Twietter" ]
+                [ a [ style [ ("text-decoration", "none") ]
+                    , href "#"
+                    ]
+                    [ twitter ]
+                ]
            , li [ style [ ("display", "inline")
                         , ("padding", "0.5em")
                         ]
                 ]
-                [ text "LinkedIn" ]
+                [ a [ style [ ("text-decoration", "none") ]
+                    , href "#"
+                    ]
+                    [ linkedIn ]
+                ]
            , li [ style [ ("display", "inline")
                         , ("padding", "0.5em")
                         ]

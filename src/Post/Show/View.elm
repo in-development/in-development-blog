@@ -207,7 +207,7 @@ postCompleteAuthor author =
                         , ("padding", "0.5em")
                         ]
                 ]
-                [ text "Mail" ]
+                [ mail ]
            ]
       ]
 

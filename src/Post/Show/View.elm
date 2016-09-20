@@ -77,13 +77,20 @@ postBody post complete =
         [ if complete then postComplete postTextStr post.author else postIncomplete postTextStr ]
 
 
+getTextPosition : String -> String -> Int
+getTextPosition text comparation =
+  lines text
+  |> List.filter (\line -> line == comparation)
+  |> List.length
+
+
 lineBreakText =
   "-----<<<<<continue<<<<<-----"
 
 
 postHasLineBreakMarking : String -> Bool
 postHasLineBreakMarking text =
-  if (List.length (List.filter (\line -> line == lineBreakText) (lines text))) == 0 then
+  if getTextPosition text lineBreakText == 0 then
     False
   else
     True
@@ -98,10 +105,12 @@ postHeadLineBreak text =
         Nothing -> ""
 
     newText =
-      List.map (\line -> if postHasAuthorPosition line then "" else line) (lines head)
+      lines head
+      |> List.map (\line -> if postHasAuthorPosition line then "" else line)
   
   in
-    Markdown.toHtml [class "content hlsj"] (join "\n" newText)
+    join "\n" newText
+    |> Markdown.toHtml [class "content hlsj"]
 
 
 postIncomplete : String -> Html.Html Msg
@@ -122,10 +131,12 @@ postHeadAuthor text =
         Nothing -> ""
 
     newText =
-      List.map (\line -> if postHasLineBreakMarking line then "" else line) (lines head)
+      lines head
+      |> List.map (\line -> if postHasLineBreakMarking line then "" else line)
 
   in
-    Markdown.toHtml [class "content hlsj"] (join "\n" newText)
+    join "\n" newText
+    |> Markdown.toHtml [class "content hlsj"]
 
 
 postTailAuthor : String -> Html.Html Msg
@@ -137,10 +148,12 @@ postTailAuthor text =
         Nothing -> [""]
 
     newText =
-      List.map (\line -> if postHasLineBreakMarking line then "" else line) tail
+      tail
+      |> List.map (\line -> if postHasLineBreakMarking line then "" else line)
   
   in
-    Markdown.toHtml [class "content hlsj"] (join "\n" newText)
+    join "\n" newText
+    |> Markdown.toHtml [class "content hlsj"]
 
 
 postComplete : String -> String -> Html.Html Msg
@@ -154,7 +167,7 @@ postComplete text author =
 
 postHasAuthorPosition : String -> Bool
 postHasAuthorPosition text =
-  if (List.length (List.filter (\line -> line == authorText) (lines text))) == 0 then
+  if getTextPosition text authorText == 0 then
     False
   else
     True

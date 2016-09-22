@@ -1,0 +1,27 @@
+.footer-main {
+  border-top: 1px solid #ededed;
+  padding: 20px 0;
+  margin: 40px 0 0;
+  font-size: 1.1em;
+  color: #aaa;
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.footer-main:before {
+  display: block;
+  content: " ";
+  width: 7px;
+  height: 7px;
+  border: #ededed 1px solid;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  background: #fff;
+  box-shadow: #fff 0 0 0 5px;
+  border-radius: 3px;
+}

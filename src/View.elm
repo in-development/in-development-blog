@@ -23,11 +23,15 @@ import Post.New.View exposing (newPostView)
 import Header.View exposing (headerView)
 
 
+import Footer.View exposing (footerView)
+
+
 view : AppModel -> Html.Html Msg
 view model =
   div []
       [ Html.App.map HeaderMessagesMsg (headerView model.route)
       , pageView model
+      , Html.App.map FooterMessagesMsg (footerView)
       ]
     
 

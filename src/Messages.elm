@@ -12,9 +12,12 @@ import Post.New.Messages as NewPostMessages
 
 import Header.Messages as HeaderMessages
 
+import Footer.Messages as FooterMessages
+
 type Msg
   = NoOp
   | PostsMessagesMsg PostsMessages.Msg
   | PostMessagesMsg PostMessages.Msg
   | NewPostMessagesMsg NewPostMessages.Msg
   | HeaderMessagesMsg HeaderMessages.Msg
+  | FooterMessagesMsg FooterMessages.Msg

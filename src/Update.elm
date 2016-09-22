@@ -15,6 +15,9 @@ import Post.Models exposing (initialPost)
 import Header.Update
 
 
+import Footer.Update
+
+
 update : Msg -> AppModel -> (AppModel, Cmd Msg)
 update msg model =
   case msg of
@@ -55,3 +58,11 @@ update msg model =
 
       in
         ( model, Cmd.map HeaderMessagesMsg msg )
+
+    FooterMessagesMsg subMsg ->
+      let
+        msg =
+          Footer.Update.update
+
+      in
+        ( model, Cmd.map FooterMessagesMsg msg )

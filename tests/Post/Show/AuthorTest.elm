@@ -5,63 +5,10 @@ import Test exposing (..)
 import Expect
 
 
-import String
-import Html exposing (span)
-import Html.Attributes exposing (class)
-import Markdown
+import Post.Show.Fixtures as Fixtures
 
 
 import Post.Show.View exposing (..)
-import Post.Show.Messages exposing (..)
-
-
-textWithoutAuthorMark: String
-textWithoutAuthorMark =
-  String.concat ["#This is a test\n","This post hasn't an author mark."]
-
-
-textWithAuthorMark: String
-textWithAuthorMark =
-  String.concat [ "#This is a test\n"
-                , authorText
-                , "\n"
-                , "This post has an author mark."
-                ]
-
-
-textWithoutAuthorMarkWithLineBreak: String
-textWithoutAuthorMarkWithLineBreak =
-  lineBreakText
-
-
-postTailWithAuthor: Html.Html Msg
-postTailWithAuthor =
-    String.concat ["\n", "This post has an author mark."]
-    |> Markdown.toHtml [class "content hlsj"]
-
-
-postTailWithoutAuthor: Html.Html Msg
-postTailWithoutAuthor =
-    ""
-    |> Markdown.toHtml [class "content hlsj"]
-
-
-postHeadWithAuthor: Html.Html Msg
-postHeadWithAuthor =
-    String.concat ["#This is a test\n"]
-    |> Markdown.toHtml [class "content hlsj"]
-
-
-postHeadWithoutAuthor: Html.Html Msg
-postHeadWithoutAuthor =
-  textWithoutAuthorMark
-  |> Markdown.toHtml [class "content hlsj"]
-
-
-postHeadWithLineBreak: Html.Html Msg
-postHeadWithLineBreak =
-  ""
-  |> Markdown.toHtml [class "content hlsj"]
 
 
 all: Test
@@ -69,29 +16,29 @@ all =
   describe "Author"
     [ test "Should return False in postHasAuthorPosition funciotn when text hasn't and author mark" <|
       \() ->
-        Expect.false "Expect False when post hasn't author mark" (postHasAuthorPosition textWithoutAuthorMark)
+        Expect.false "Expect False when post hasn't author mark" (postHasAuthorPosition Fixtures.textWithoutAuthorMark)
     , test "Should return True in postHasAuthorPosition funciotn when text has and author mark" <|
       \() ->
-        Expect.true "Expect True when post has author mark" (postHasAuthorPosition textWithAuthorMark)
+        Expect.true "Expect True when post has author mark" (postHasAuthorPosition Fixtures.textWithAuthorMark)
     , test "Should return 0 to getTextPosition function when text doesn't have the mark asked." <|
       \() ->
-        Expect.equal 0 (getTextPosition textWithoutAuthorMark authorText)
+        Expect.equal 0 (getTextPosition Fixtures.textWithoutAuthorMark authorText)
     , test "Should return 1 to getTextPosition function when text has one mark asked." <|
       \() ->
-        Expect.equal 1 (getTextPosition textWithAuthorMark authorText)
+        Expect.equal 1 (getTextPosition Fixtures.textWithAuthorMark authorText)
     , test "Should return just the content of post below the author mark" <|
       \() ->
-        Expect.equal postTailWithAuthor (postTailAuthor textWithAuthorMark)
+        Expect.equal Fixtures.postTailWithAuthor (postTailAuthor Fixtures.textWithAuthorMark)
     , test "Should return all blank when post doesn't have the author mark" <|
       \() ->
-        Expect.equal postTailWithoutAuthor (postTailAuthor textWithoutAuthorMark)
+        Expect.equal Fixtures.postTailWithoutAuthor (postTailAuthor Fixtures.textWithoutAuthorMark)
     , test "Should return just the content of post above the author mark" <|
       \() ->
-        Expect.equal postHeadWithAuthor (postHeadAuthor textWithAuthorMark)
+        Expect.equal Fixtures.postHeadWithAuthor (postHeadAuthor Fixtures.textWithAuthorMark)
     , test "Should return all post when it doesn't have the author mark" <|
       \() ->
-        Expect.equal postHeadWithoutAuthor (postHeadAuthor textWithoutAuthorMark)
+        Expect.equal Fixtures.postHeadWithoutAuthor (postHeadAuthor Fixtures.textWithoutAuthorMark)
     , test "Should return post with line break without line break" <|
       \() ->
-        Expect.equal postHeadWithLineBreak (postHeadAuthor textWithoutAuthorMarkWithLineBreak)
+        Expect.equal Fixtures.postHeadWithLineBreak (postHeadAuthor Fixtures.textWithoutAuthorMarkWithLineBreak)
     ] 

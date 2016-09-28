@@ -29,6 +29,11 @@ textWithAuthorMark =
                 ]
 
 
+textWithoutAuthorMarkWithLineBreak: String
+textWithoutAuthorMarkWithLineBreak =
+  lineBreakText
+
+
 postTailWithAuthor: Html.Html Msg
 postTailWithAuthor =
     String.concat ["\n", "This post has an author mark."]
@@ -39,6 +44,24 @@ postTailWithoutAuthor: Html.Html Msg
 postTailWithoutAuthor =
     ""
     |> Markdown.toHtml [class "content hlsj"]
+
+
+postHeadWithAuthor: Html.Html Msg
+postHeadWithAuthor =
+    String.concat ["#This is a test\n"]
+    |> Markdown.toHtml [class "content hlsj"]
+
+
+postHeadWithoutAuthor: Html.Html Msg
+postHeadWithoutAuthor =
+  textWithoutAuthorMark
+  |> Markdown.toHtml [class "content hlsj"]
+
+
+postHeadWithLineBreak: Html.Html Msg
+postHeadWithLineBreak =
+  ""
+  |> Markdown.toHtml [class "content hlsj"]
 
 
 all: Test
@@ -62,4 +85,13 @@ all =
     , test "Should return all blank when post doesn't have the author mark" <|
       \() ->
         Expect.equal postTailWithoutAuthor (postTailAuthor textWithoutAuthorMark)
+    , test "Should return just the content of post above the author mark" <|
+      \() ->
+        Expect.equal postHeadWithAuthor (postHeadAuthor textWithAuthorMark)
+    , test "Should return all post when it doesn't have the author mark" <|
+      \() ->
+        Expect.equal postHeadWithoutAuthor (postHeadAuthor textWithoutAuthorMark)
+    , test "Should return post with line break without line break" <|
+      \() ->
+        Expect.equal postHeadWithLineBreak (postHeadAuthor textWithoutAuthorMarkWithLineBreak)
     ] 

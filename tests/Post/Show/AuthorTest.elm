@@ -6,14 +6,19 @@ import Expect
 
 
 import String
+import Html exposing (span)
+import Html.Attributes exposing (class)
+import Markdown
 
 
 import Post.Show.View exposing (..)
+import Post.Show.Messages exposing (..)
 
 
 textWithoutAuthorMark: String
 textWithoutAuthorMark =
   String.concat ["#This is a test\n","This post hasn't an author mark."]
+
 
 textWithAuthorMark: String
 textWithAuthorMark =
@@ -22,6 +27,18 @@ textWithAuthorMark =
                 , "\n"
                 , "This post has an author mark."
                 ]
+
+
+postTailWithAuthor: Html.Html Msg
+postTailWithAuthor =
+    String.concat ["\n", "This post has an author mark."]
+    |> Markdown.toHtml [class "content hlsj"]
+
+
+postTailWithoutAuthor: Html.Html Msg
+postTailWithoutAuthor =
+    ""
+    |> Markdown.toHtml [class "content hlsj"]
 
 
 all: Test
@@ -39,4 +56,10 @@ all =
     , test "Should return 1 to getTextPosition function when text has one mark asked." <|
       \() ->
         Expect.equal 1 (getTextPosition textWithAuthorMark authorText)
+    , test "Should return just the content of post below the author mark" <|
+      \() ->
+        Expect.equal postTailWithAuthor (postTailAuthor textWithAuthorMark)
+    , test "Should return all blank when post doesn't have the author mark" <|
+      \() ->
+        Expect.equal postTailWithoutAuthor (postTailAuthor textWithoutAuthorMark)
     ] 

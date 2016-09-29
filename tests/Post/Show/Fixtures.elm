@@ -25,6 +25,28 @@ textWithAuthorMark =
                 ]
 
 
+textWithLineBreakMark: String
+textWithLineBreakMark =
+  String.concat [ "#This is a test\n"
+                , lineBreakText
+                , "\n"
+                , "This post has an author mark."
+                ]
+
+
+textWithoutLineBreakMark: String
+textWithoutLineBreakMark =
+  String.concat [ "#This is a test\n"
+                , "This post has an author mark."
+                ]
+
+
+textHeadLineBreakMark: String
+textHeadLineBreakMark =
+  String.concat [ "#This is a test\n"
+                ]
+
+
 textWithoutAuthorMarkWithLineBreak: String
 textWithoutAuthorMarkWithLineBreak =
   lineBreakText
@@ -57,4 +79,16 @@ postHeadWithoutAuthor =
 postHeadWithLineBreak: Html.Html Msg
 postHeadWithLineBreak =
   ""
+  |> Markdown.toHtml [class "content hlsj"]
+
+
+postHeadLineBreak: Html.Html Msg
+postHeadLineBreak =
+  textHeadLineBreakMark
+  |> Markdown.toHtml [class "content hlsj"]
+
+
+postWithoutLineBreakMark: Html.Html Msg
+postWithoutLineBreakMark =
+  textWithoutLineBreakMark
   |> Markdown.toHtml [class "content hlsj"]

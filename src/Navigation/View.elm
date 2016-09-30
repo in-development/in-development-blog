@@ -40,28 +40,16 @@ menuView route =
 
 menuLink : Msg -> String -> String -> Bool -> Html.Html Msg
 menuLink message viewId label isSelected =
-  let
-    
-    menuItem =
-      case isSelected of
-        True -> 
-          span [ id viewId
-               , class'
-               ]
-               [ text label ]
-        _ ->
-          a [ id viewId
-            , href "javascript://"
-            , onClick message
-            , class'
-            ]
-            [ text label ]
-
-
-    class' =
-      case isSelected of
-        True -> class [NavigationCss.NavItem, NavigationCss.NavItemSelected]
-        _ -> class[NavigationCss.NavItem]
-         
-  in
-    menuItem
+  case isSelected of
+    True ->
+      span [ id viewId
+           , class [NavigationCss.NavItem, NavigationCss.NavItemSelected]
+           ]
+           [ text label ]
+    _ ->
+      a [ id viewId
+        , href "javascript://"
+        , onClick message
+        , class[NavigationCss.NavItem]
+        ]
+        [ text label ]

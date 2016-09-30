@@ -5,5 +5,4 @@ import Navigation.Messages as NavigationMessages
 
 
 type Msg
-  = NoOp
-  | NavigationMessagesMsg NavigationMessages.Msg
+  = NavigationMessagesMsg NavigationMessages.Msg

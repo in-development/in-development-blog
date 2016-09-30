@@ -10,9 +10,6 @@ import Navigation.Update
 update : Msg -> Cmd Msg
 update msg =
   case msg of
-    NoOp ->
-     Cmd.none 
-
     NavigationMessagesMsg subMsg ->
       let
         msg =

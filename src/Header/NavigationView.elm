@@ -1,4 +1,4 @@
-module Navigation.View exposing (..)
+module Header.NavigationView exposing (..)
 
 
 import Html exposing (div, text, a, span)
@@ -6,13 +6,9 @@ import Html.Events exposing (onClick)
 import Html.Attributes exposing (style, href, id)
 import Html.CssHelpers
 
+import Header.NavigationCss as NavigationCss
 
-import Navigation.NavigationCss as NavigationCss
-
-
-import Navigation.Messages exposing (..)
-
-
+import Header.Messages exposing (..)
 import Routing.Models exposing (..)
 
 
@@ -22,13 +18,13 @@ import Routing.Models exposing (..)
 menuView : Route ->  Html.Html Msg
 menuView route =
   let
-    
+
     isPostsSelected =
       route == PostsRoute
-      
+
     isAdminSelected =
       route == AdminRoute
-       
+
   in
     div [ class [NavigationCss.Container] ]
         [ div []
@@ -41,10 +37,10 @@ menuView route =
 menuLink : Msg -> String -> String -> Bool -> Html.Html Msg
 menuLink message viewId label isSelected =
   let
-    
+
     menuItem =
       case isSelected of
-        True -> 
+        True ->
           span [ id viewId
                , class'
                ]
@@ -62,6 +58,6 @@ menuLink message viewId label isSelected =
       case isSelected of
         True -> class [NavigationCss.NavItem, NavigationCss.NavItemSelected]
         _ -> class[NavigationCss.NavItem]
-         
+
   in
     menuItem

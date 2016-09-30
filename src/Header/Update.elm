@@ -3,20 +3,13 @@ module Header.Update exposing (..)
 
 import Header.Messages exposing (..)
 
-
-import Navigation.Update
-
+import Navigation
 
 update : Msg -> Cmd Msg
 update msg =
   case msg of
-    NoOp ->
-     Cmd.none 
+    ShowPosts ->
+      Navigation.newUrl ("#/")
 
-    NavigationMessagesMsg subMsg ->
-      let
-        msg =
-          Navigation.Update.update subMsg
-
-      in
-        Cmd.map NavigationMessagesMsg msg
+    ShowAdmin ->
+      Navigation.newUrl ("#/admin")

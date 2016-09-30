@@ -7,7 +7,7 @@ import Html.App as Html
 
 import MainCss
 import Header.HeaderCss as HeaderCss
-import Navigation.NavigationCss as NavigationCss
+import Header.NavigationCss as NavigationCss
 
 
 port files : CssFileStructure -> Cmd msg

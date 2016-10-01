@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/elm-test/bin/elm-test",
     "start": "node server.js",
-    "build": "webpack",
+    "build": "node_modules/elm-css/elm-css.js /app/src/Stylesheets.elm && webpack",
     "watch": "webpack --watch",
     "dev": "node_modules/elm-css/elm-css.js src/Stylesheets.elm && webpack-dev-server --host 0.0.0.0 --port 8000"
   },

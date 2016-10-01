@@ -1,4 +1,4 @@
-module Navigation.NavigationCss exposing (..)
+module Header.NavigationCss exposing (..)
 
 
 import Css exposing (..)
@@ -12,7 +12,7 @@ type CssClasses
 
 
 css =
-  (stylesheet << namespace "navigation")
+  (stylesheet << namespace "header-navigation")
   [ (.) Container
       [ backgroundColor (rgba 210 220 230 0.2)
       , padding (em 0.6)

@@ -7,7 +7,6 @@ import Html.App as Html
 
 import MainCss
 import Header.HeaderCss as HeaderCss
-import Navigation.NavigationCss as NavigationCss
 
 
 port files : CssFileStructure -> Cmd msg
@@ -15,7 +14,7 @@ port files : CssFileStructure -> Cmd msg
 
 cssFiles : CssFileStructure
 cssFiles =
-    toFileStructure [ ( "src/assets/styles.css", compile [ MainCss.css ] ), ( "src/assets/header.css", compile [ HeaderCss.css ] ), ( "src/assets/navigation.css", compile [ NavigationCss.css ] ) ]
+    toFileStructure [ ( "src/assets/styles.css", compile [ MainCss.css ] ), ( "src/assets/header.css", compile [ HeaderCss.css ] ) ]
 
 
 main : Program Never

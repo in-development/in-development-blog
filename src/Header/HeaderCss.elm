@@ -12,7 +12,7 @@ type CssClasses
 
 
 css =
-  (stylesheet << namespace "header")
+  (stylesheet << namespace "header-navigation")
   [ (.) NavBar
       [ marginTop (em 0.6)
       ]

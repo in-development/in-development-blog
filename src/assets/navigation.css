@@ -1,17 +1,17 @@
-.navigationContainer {
+.header-navigationContainer {
     background-color: rgba(210, 220, 230, 0.2);
     padding: 0.6em;
     color: #FFFFFF;
 }
 
-.navigationNavItem {
+.header-navigationNavItem {
     text-decoration: none;
     font-size: 1em;
     padding: 0.5em;
     color: #000000;
 }
 
-.navigationNavItem:hover {
+.header-navigationNavItem:hover {
     background-color: rgba(210, 220, 230, 1);
     border-color: #000000;
     border-style: solid;
@@ -22,7 +22,7 @@
     color: #FFFFFF;
 }
 
-.navigationNavItemSelected {
+.header-navigationNavItemSelected {
     background-color: rgba(210, 220, 230, 1);
     border-color: #000000;
     border-style: solid;

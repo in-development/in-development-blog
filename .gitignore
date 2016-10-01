@@ -3,3 +3,5 @@ elm-stuff
 dist
 npm-debug.log
 *.swp
+src/assets/*.css
+!src/assets/markdown.css

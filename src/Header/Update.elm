@@ -1,8 +1,10 @@
-module Navigation.Update exposing (..)
+module Header.Update exposing (..)
+
 
 import Navigation
 
-import Navigation.Messages exposing (..)
+
+import Header.Messages exposing (..)
 
 
 update : Msg -> Cmd Msg

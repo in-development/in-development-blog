@@ -23,8 +23,9 @@ css =
       , textAlign center
       , position relative
       , width (pct 100)
+      , property "float" "left"
       , (before) [ display block
-                  {-, contentBox "auto"-}
+                  , property "content" "' '"
                   , width (px 7)
                   , height (px 7)
                   , border (px 1)

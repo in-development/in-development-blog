@@ -31,7 +31,7 @@ view model =
   div []
       [ Html.App.map HeaderMessagesMsg (headerView model.route)
       , pageView model
-      , Html.App.map FooterMessagesMsg (footerView)
+      , footerView
       ]
     
 

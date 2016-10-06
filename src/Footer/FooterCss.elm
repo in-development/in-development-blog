@@ -35,7 +35,6 @@ css =
                   , left (pct 50)
                   , marginLeft (px -5)
                   , backgroundColor (hex "fff")
-                  , textShadow4 (px 0) (px 0) (px 5) (hex "fff")
                   , borderRadius (px 3)
                   ]
       ]

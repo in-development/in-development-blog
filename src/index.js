@@ -4,7 +4,6 @@ require('./assets/markdown.css');
 require('./assets/styles.css');
 require('./assets/header.css');
 require('./assets/footer.css');
-require('./assets/footer-compl.css');
 
 // Require index.html so it gets copied to dist
 require('./index.html');

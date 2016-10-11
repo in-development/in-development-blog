@@ -37,6 +37,7 @@ css =
                   , marginLeft (px -5)
                   , backgroundColor (hex "fff")
                   , borderRadius (px 3)
+                  , property "box-shadow" "0px 2px 2px 5px #fff"
                   ]
       ]
   ]

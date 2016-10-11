@@ -12,6 +12,7 @@ import Post.New.Messages as NewPostMessages
 
 import Header.Messages as HeaderMessages
 
+
 type Msg
   = NoOp
   | PostsMessagesMsg PostsMessages.Msg

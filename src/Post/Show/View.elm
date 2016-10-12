@@ -77,8 +77,8 @@ postBody post complete =
         [ if complete then postComplete postTextStr post.author else postIncomplete postTextStr ]
 
 
-getTextPosition : String -> String -> Int
-getTextPosition text comparation =
+numberOfLinesWithTextSearched : String -> String -> Int
+numberOfLinesWithTextSearched text comparation =
   lines text
   |> List.filter (\line -> line == comparation)
   |> List.length
@@ -90,7 +90,7 @@ lineBreakText =
 
 postHasLineBreakMarking : String -> Bool
 postHasLineBreakMarking text =
-  if getTextPosition text lineBreakText == 0 then
+  if numberOfLinesWithTextSearched text lineBreakText == 0 then
     False
   else
     True
@@ -167,7 +167,7 @@ postComplete text author =
 
 postHasAuthorPosition : String -> Bool
 postHasAuthorPosition text =
-  if getTextPosition text authorText == 0 then
+  if numberOfLinesWithTextSearched text authorText == 0 then
     False
   else
     True

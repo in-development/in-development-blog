@@ -34,6 +34,16 @@ textWithLineBreakMark =
                 ]
 
 
+textWithTwoLineBreaksMark: String
+textWithTwoLineBreaksMark =
+  String.concat [ "#This is a test\n"
+                , lineBreakText
+                , "\n"
+                , "This post has an author mark.\n"
+                , lineBreakText
+                ]
+
+
 textWithoutLineBreakMark: String
 textWithoutLineBreakMark =
   String.concat [ "#This is a test\n"

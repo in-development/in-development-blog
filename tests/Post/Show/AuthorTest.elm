@@ -20,12 +20,6 @@ all =
     , test "Should return True in postHasAuthorPosition funciotn when text has and author mark" <|
       \() ->
         Expect.true "Expect True when post has author mark" (postHasAuthorPosition Fixtures.textWithAuthorMark)
-    , test "Should return 0 to getTextPosition function when text doesn't have the mark asked." <|
-      \() ->
-        Expect.equal 0 (getTextPosition Fixtures.textWithoutAuthorMark authorText)
-    , test "Should return 1 to getTextPosition function when text has one mark asked." <|
-      \() ->
-        Expect.equal 1 (getTextPosition Fixtures.textWithAuthorMark authorText)
     , test "Should return just the content of post below the author mark" <|
       \() ->
         Expect.equal Fixtures.postTailWithAuthor (postTailAuthor Fixtures.textWithAuthorMark)

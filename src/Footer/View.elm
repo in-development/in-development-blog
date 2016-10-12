@@ -19,4 +19,4 @@ import Routing.Models exposing (..)
 footerView : Html.Html msg
 footerView =
   footer [ class [FooterCss.Main] ]
-         [ text " In developiment © 2016 " ]
+         [ text " In development © 2016 " ]

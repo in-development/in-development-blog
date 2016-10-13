@@ -3,9 +3,10 @@ module Post.Show.View exposing (..)
 
 import Html exposing (div, text, a, hr, span, ul, li)
 import Html.Events exposing (onClick)
-import Html.Attributes exposing (style, class, href, id)
+import Html.Attributes exposing (class, href, id)
 import Markdown
 import String exposing (..)
+import Html.CssHelpers
 
 
 import Post.Show.Models exposing (Post)
@@ -16,6 +17,13 @@ import Base64
 
 
 import SocialNetwork.Logo exposing (..)
+
+
+import Post.Show.PostCss as PostCss
+
+
+{ class } =
+  Html.CssHelpers.withNamespace "post"
 
 
 postView : Post -> Html.Html Msg
@@ -33,7 +41,7 @@ postView post =
         postSimpleAuthor post
 
   in
-    div [ style [("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
+    div [ class [PostCss.Container] ]
         [ postBody post True
         , author
         ]
@@ -48,10 +56,10 @@ postSummary post =
     a [ id postId
       , href "javascript://"
       , onClick (ShowPost post)
-      , style [("text-decoration", "none"), ("color", "#000000")]
+      , class [PostCss.Link]
       ]
       [
-        div [ style [("width", "70%"), ("left", "10%"), ("position", "relative"), ("float", "left"), ("margin-bottom", "0.5em")] ]
+        div [ class [PostCss.Summary] ]
             [ postBody post False
             , postSimpleAuthor post
             , lineBreak
@@ -68,11 +76,7 @@ postBody post complete =
         Err _ -> ""
 
   in
-    div [ style [ ("margin", "0.5em 0 0 0.5em")
-                , ("font-family", "Helvetica Neue, Helvetica, Arial, sans-serif")
-                , ("text-rendering", "optimizeLegibility")
-                ]
-        , class "post"
+    div [ class [PostCss.Body]
         ]
         [ if complete then postComplete postTextStr post.author else postIncomplete postTextStr ]
 
@@ -110,7 +114,7 @@ postHeadLineBreak text =
   
   in
     join "\n" newText
-    |> Markdown.toHtml [class "content hlsj"]
+    |> Markdown.toHtml [Html.Attributes.class "content hlsj"]
 
 
 postIncomplete : String -> Html.Html Msg
@@ -136,7 +140,7 @@ postHeadAuthor text =
 
   in
     join "\n" newText
-    |> Markdown.toHtml [class "content hlsj"]
+    |> Markdown.toHtml [Html.Attributes.class "content hlsj"]
 
 
 postTailAuthor : String -> Html.Html Msg
@@ -153,7 +157,7 @@ postTailAuthor text =
   
   in
     join "\n" newText
-    |> Markdown.toHtml [class "content hlsj"]
+    |> Markdown.toHtml [Html.Attributes.class "content hlsj"]
 
 
 postComplete : String -> String -> Html.Html Msg
@@ -175,67 +179,40 @@ postHasAuthorPosition text =
 
 postCompleteAuthor : String -> Html.Html Msg
 postCompleteAuthor author =
-  div [ style [ ("text-align", "center")
-              , ("margin-bottom", "3em")
-              ]
-      ]
-      [ a [ href "javascript://"
-          , style [ ("text-decoration", "none")
-                  , ("color", "#000000")
-                  , ("font-size", "1.5em")
-                  , ("bold", "300")
-                  ]
-          ]
-          [ text author ]
-      , ul []
-           [ li [ style [ ("display", "inline")
-                        , ("padding", "0.5em")
-                        , ("margin-left", "-2.5em")
-                        ]
-                ]
-                [ a [ style [ ("text-decoration", "none") ]
-                    , href "javascript://"
-                    ]
-                    [ gitHub ]
-                ]
-           , li [ style [ ("display", "inline")
-                        , ("padding", "0.5em")
-                        ]
-                ]
-                [ a [ style [ ("text-decoration", "none") ]
-                    , href "javascript://"
-                    ]
-                    [ twitter ]
-                ]
-           , li [ style [ ("display", "inline")
-                        , ("padding", "0.5em")
-                        ]
-                ]
-                [ a [ style [ ("text-decoration", "none") ]
-                    , href "javascript://"
-                    ]
-                    [ linkedIn ]
-                ]
-           , li [ style [ ("display", "inline")
-                        , ("padding", "0.5em")
-                        ]
-                ]
-                [ a [ style [ ("text-decoration", "none") ]
-                    , href "javascript://"
-                    ]
-                    [ mail ]
-                ]
-           ]
-      ]
+  let
+    items =
+      [gitHub, twitter, linkedIn, mail]
+      |> List.map (\item -> authorItem item) 
+
+  in
+    div [ class [PostCss.Author] 
+        ]
+        [ a [ href "javascript://"
+            , class [PostCss.AuthorLink] 
+            ]
+            [ text author ]
+        , ul [class [PostCss.AuthorList]
+             ]
+             items
+        ]
+
+
+authorItem : Html.Html msg -> Html.Html msg
+authorItem item =
+  li [ class [PostCss.AuthorItem] 
+     ]
+     [ a [ class [PostCss.AuthorItemLink]
+         , href "javascript://"
+         ]
+         [ item ]
+     ]
 
 
 postSimpleAuthor : Post -> Html.Html Msg
 postSimpleAuthor post =
-  div [style [("text-align", "right"), ("margin", "0.5em 0.5em 0.5em 0"), ("font-size", "0.8em")]]
+  div [class [PostCss.SimpleAuthor]]
       [ a [ href "javascript://"
-          , style [ ("text-decoration", "none")
-                  , ("color", "#000")
-                  ]
+          , class [PostCss.SimpleAuthorLink]
           ]
           [ text post.author ]
       ]
@@ -243,11 +220,6 @@ postSimpleAuthor post =
 
 lineBreak : Html.Html Msg
 lineBreak =
-  hr [ style [ ("border", "0")
-             , ("height", "2px")
-             , ("border-top", "1px dashed #000000")
-             , ("border-bottom", "1px dashed black")
-             , ("margin-top", "4.5em")
-             ]
+  hr [ class [PostCss.LineBreak]
      ]
      [ ]

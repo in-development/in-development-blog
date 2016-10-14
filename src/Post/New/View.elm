@@ -1,48 +1,45 @@
 module Post.New.View exposing (..)
 
 import Html exposing (div, text, label, input, textarea, button)
-import Html.Attributes exposing (style, value)
+import Html.Attributes exposing (value)
 import Html.Events exposing (onInput, onClick)
+import Html.CssHelpers
 
 
 import Post.New.Messages exposing (..)
 import Post.Models exposing (Posts, Post)
 
 
+import Post.New.NewCss as NewCss
+
+
+{ class } =
+  Html.CssHelpers.withNamespace "post-new"
+
+
 newPostView : Posts -> Post -> Html.Html Msg
 newPostView posts model = div []
-                  [ div [ style [("margin", "1em")] ]
-                        [ label [ style [("display", "block"), ("clear", "right")] ]
+                  [ div [ class [NewCss.Container] ]
+                        [ label [ class [NewCss.Label] ]
                                 [ text "Author:"]
-                        , input [ style [("width", "30%")]
+                        , input [ class [NewCss.AuthorInput]
                                 , value model.author
                                 , onInput SetAuthor
                                 ]
                                 []
                         ]
-                  , div [ style [("margin", "1em")] ]
-                        [ label [ style [("display", "block"), ("clear", "right")] ]
+                  , div [ class [NewCss.Container] ]
+                        [ label [ class [NewCss.Label] ]
                                 [ text "Post:"]
-                        , textarea [ style [ ("width", "100%")
-                                           , ("height", "40%")
-                                           , ("min-height", "400px")
-                                           ]
+                        , textarea [ class [NewCss.TextInput]
                                    , value model.text
                                    , onInput SetText
                                    ]
                                    []
                         ]
-                  , div [ style [("margin", "1em")] ]
+                  , div [ class [NewCss.Container] ]
                         [
-                          button [ style [
-                                          ("position", "relative"),
-                                          ("float", "right"),
-                                          ("width", "10%"),
-                                          ("height", "10%"),
-                                          ("min-height", "30px"),
-                                          ("font-size", "1em"),
-                                          ("cursor", "pointer")
-                                         ]
+                          button [ class [NewCss.Button]
                                  , onClick (SavePost posts model) 
                                  ]
                                  [ text "Save" ]

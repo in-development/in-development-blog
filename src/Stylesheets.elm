@@ -8,6 +8,8 @@ import Html.App as Html
 import MainCss
 import Header.HeaderCss as HeaderCss
 import Header.NavigationCss as NavigationCss
+import Post.Show.PostCss as PostCss
+import Post.New.NewCss as NewCss
 import Footer.FooterCss as FooterCss
 
 
@@ -18,6 +20,8 @@ cssFiles : CssFileStructure
 cssFiles =
     toFileStructure [ ( "src/assets/styles.css", compile [ MainCss.css ] )
                     , ( "src/assets/header.css", compile [ HeaderCss.css, NavigationCss.css ] )
+                    , ( "src/assets/post.css", compile [ PostCss.css ] )
+                    , ( "src/assets/post-new.css", compile [ NewCss.css ] )
                     , ( "src/assets/footer.css", compile [ FooterCss.css ] )
                     ]
 

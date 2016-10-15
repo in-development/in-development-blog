@@ -40,9 +40,7 @@ pageView model =
   case model.route of
     PostsRoute ->
       div []
-          [ h1  [ style [("margin-left", "1em")] ]
-                [ text model.title ]
-          , div [ style [("margin-top", "1em")] ]
+          [ div [ style [("margin-top", "1em")] ]
                 [ Html.App.map PostsMessagesMsg (postsView model.posts) ]
           ]
 
@@ -61,7 +59,7 @@ pageView model =
         case post of
           Just p ->
             div []
-                [ div [ style [("margin-top", "1em")] ]
+                [ div [ style [("margin-top", "3em")] ]
                       [ Html.App.map PostMessagesMsg (postView p) ]
                 ]
           Nothing ->

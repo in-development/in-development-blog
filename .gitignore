@@ -5,4 +5,3 @@ npm-debug.log
 *.swp
 src/assets/*.css
 !src/assets/markdown.css
-!src/assets/footer-compl.css
